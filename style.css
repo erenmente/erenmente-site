@@ -1,148 +1,88 @@
-/* --- GENEL AYARLAR --- */
+:root {
+    --bg-color: #f0f2f5;
+    --editor-bg: #ffffff;
+    --terminal-bg: #1e1e1e;
+    --text-main: #333;
+    
+    /* Kod Renkleri (Light) */
+    --kw-purple: #a626a4;
+    --str-green: #50a14f;
+    --cls-orange: #c18401;
+    --func-blue: #4078f2;
+
+    /* Terminal Renkleri (Dark) */
+    --term-text: #abb2bf;
+    --term-blue: #61afef;
+    --term-info: #5c6370;
+}
+
 body {
-    background-color: #1a1a2e; /* Koyu Lacivert Tema */
-    font-family: 'Poppins', sans-serif;
-    color: #e0e0e0;
-    overflow-x: hidden;
+    background-color: var(--bg-color);
+    font-family: 'Courier New', monospace; /* Her bilgisayarda çalışsın diye standart font */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px;
 }
 
-.bg-darker {
-    background-color: #16213e; /* Bir ton açık lacivert */
+.container {
+    width: 100%;
+    max-width: 650px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
 }
 
-/* --- HERO SECTION --- */
-.hero-section {
-    min-height: 85vh;
-    background: radial-gradient(circle at center, #1f2a48 0%, #1a1a2e 100%);
-    padding-top: 80px;
+/* Pencere Kasası */
+.window-frame {
+    border-radius: 10px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+    overflow: hidden;
+    font-size: 15px;
 }
 
-/* --- LOGO TASARIMI (<erenmente/>) --- */
-.logo-code {
-    font-family: 'Courier New', monospace;
-    font-weight: 900;
-    font-size: 1.6rem;
-    background: -webkit-linear-gradient(45deg, #eee, #4ecca3);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    transition: all 0.3s ease;
+.window-header {
+    padding: 12px;
+    display: flex;
+    gap: 8px;
 }
 
-.logo-code:hover {
-    transform: scale(1.05);
-    text-shadow: 0 0 15px rgba(78, 204, 163, 0.4);
+.light-theme .window-header { background: #e5e5e5; }
+.dark-theme .window-header { background: #282c34; }
+
+.dot { width: 12px; height: 12px; border-radius: 50%; }
+.red { background: #ff5f56; }
+.yellow { background: #ffbd2e; }
+.green { background: #27c93f; }
+
+.window-content { padding: 25px; line-height: 1.5; }
+
+/* Kod Editörü Stilleri */
+.light-theme { background: var(--editor-bg); color: var(--text-main); }
+.keyword { color: var(--kw-purple); font-weight: bold; }
+.class-name { color: var(--cls-orange); }
+.string { color: var(--str-green); }
+.function { color: var(--func-blue); }
+
+/* Terminal Stilleri */
+.dark-theme { background: var(--terminal-bg); color: var(--term-text); }
+.terminal-line { margin-bottom: 10px; display: flex; align-items: center; }
+.prompt { margin-right: 10px; color: var(--term-text); }
+.cmd { color: #fff; font-weight: bold; }
+.info { color: var(--term-info); margin-bottom: 15px; font-style: italic; }
+.terminal-output.string { color: var(--term-blue); margin-bottom: 15px; }
+
+/* Yanıp sönen imleç */
+.cursor-block {
+    width: 10px;
+    height: 18px;
+    background: #ccc;
+    animation: blink 1s infinite;
 }
 
-/* --- YANIP SÖNEN İMLEÇ (|) --- */
-.console-box {
-    background: rgba(0, 0, 0, 0.3);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 8px;
-}
-
-.typing-cursor {
-    font-weight: 900;
-    font-size: 1.4rem;
-    color: #4ecca3; /* Neon Yeşil */
-    animation: blinkCursor 1s infinite;
-    vertical-align: text-bottom;
-}
-
-@keyframes blinkCursor {
+@keyframes blink {
     0%, 100% { opacity: 1; }
     50% { opacity: 0; }
-}
-
-/* --- PROJE KARTLARI (CRITICAL FIX) --- */
-.project-card {
-    background: #0f3460;
-    border-radius: 20px;
-    position: relative; /* Z-index yönetimi için şart */
-    overflow: hidden;   /* Dışarı taşan mavi yazıyı keser */
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    transition: transform 0.4s ease, box-shadow 0.4s ease;
-    /* 3D efekti için */
-    perspective: 1000px;
-}
-
-/* Kart Hover Efekti (Dönme ve Gölge) */
-.project-card:hover {
-    transform: translateY(-10px) rotateX(2deg);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-    border-color: rgba(78, 204, 163, 0.5);
-}
-
-/* --- MAVİ ARKA PLAN YAZISI (WATERMARK) --- */
-/* Burası senin 'mavi şey yazının üstüne biniyor' dediğin yerin çözümü */
-.bg-watermark {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) rotate(-15deg);
-    font-size: 4.5rem;
-    font-weight: 900;
-    color: rgba(100, 100, 255, 0.04); /* Çok şeffaf yapıldı */
-    white-space: nowrap;
-    z-index: 0; /* En alta zorlandı */
-    pointer-events: none; /* Tıklamayı engelle */
-    user-select: none;
-}
-
-/* --- KART İÇERİĞİ --- */
-.card-body-content {
-    position: relative;
-    z-index: 5; /* Watermark'ın üstünde olması garanti */
-    background: transparent;
-}
-
-/* --- LISTE STİLLERİ --- */
-.feature-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.feature-list li {
-    margin-bottom: 10px;
-    display: flex;
-    align-items: center;
-}
-
-/* --- ROZETLER VE BUTONLAR --- */
-.bg-secondary-soft {
-    background-color: rgba(255, 255, 255, 0.1);
-    color: #fff;
-    font-weight: 400;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.z-index-fix {
-    position: relative;
-    z-index: 10; /* Butonların kesinlikle tıklanabilir olması için */
-}
-
-/* Buton Parlama Efekti */
-.shine-effect {
-    position: relative;
-    overflow: hidden;
-}
-
-.shine-effect::after {
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: linear-gradient(to bottom right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.3) 50%, rgba(255,255,255,0) 100%);
-    transform: rotate(45deg);
-    transition: all 0.3s;
-    opacity: 0;
-}
-
-.shine-effect:hover::after {
-    left: 100%;
-    top: 100%;
-    opacity: 1;
-    transition: 0.7s;
 }

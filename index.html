@@ -3,140 +3,70 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Eren | Software Engineer Portfolio</title>
-    
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
-
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>">
-
-    <link rel="stylesheet" href="css/style.css">
+    <title>erenmente | Portfolio</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top backdrop-blur">
-        <div class="container">
-            <a class="navbar-brand logo-code" href="#">&lt;erenmente/&gt;</a>
-            
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link active" href="#">Ana Sayfa</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#projects">Projeler</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#contact">İletişim</a></li>
-                </ul>
+    <main class="container">
+        
+        <div class="window-frame light-theme">
+            <div class="window-header">
+                <span class="dot red"></span>
+                <span class="dot yellow"></span>
+                <span class="dot green"></span>
+            </div>
+            <div class="window-content">
+<pre><code><span class="keyword">class</span> <span class="class-name">SoftwareArchitect</span> {
+
+  <span class="function">constructor</span>() {
+    
+    <span class="keyword">this</span>.name = <span class="string">"erenmente"</span>;
+
+    <span class="keyword">this</span>.stack = [<span class="string">"Java"</span>, <span class="string">"Microservices"</span>];
+
+    <span class="keyword">this</span>.passion = <span class="string">"Building Scalable Systems"</span>;
+
+  }
+}</code></pre>
             </div>
         </div>
-    </nav>
-    <section class="hero-section d-flex align-items-center text-white">
-        <div class="container text-center">
-            <div class="col-lg-8 mx-auto fade-in-up">
-                <h1 class="display-4 fw-bold mb-4">Merhaba, Ben Eren</h1>
+
+        <div class="window-frame dark-theme">
+            <div class="window-header">
+                <span class="dot red"></span>
+                <span class="dot yellow"></span>
+                <span class="dot green"></span>
+            </div>
+            <div class="window-content terminal-content">
                 
-                <p class="lead text-light opacity-75 mb-4">
-                    Yazılım mühendisliği 1. sınıf öğrencisi olarak temel mühendislik prensipleri ve modern programlama dilleri üzerine çalışıyorum.
-                </p>
+                <div class="terminal-line">
+                    <span class="prompt">></span> <span class="cmd">erenmente.initialize_system()</span>
+                </div>
                 
-                <div class="console-box d-inline-block py-2 px-4 mb-4">
-                    <span class="text-primary fw-bold">Şu anda odak noktam:</span>
-                    <span class="typing-cursor">|</span>
+                <div class="terminal-output info">
+                    [INFO] Loading dependencies ... Done.
+                </div>
+                <div class="terminal-output info">
+                    [INFO] Checking skills ... Java, Microservices, System Design verified.
                 </div>
 
-                <p class="text-white-50">
-                    Algoritmik yetkinliğimi geliştirmek ve teorik bilgiyi pratiğe dökmek için projeler üretiyorum.
-                </p>
-            </div>
-        </div>
-    </section>
-
-    <section id="projects" class="py-5 bg-darker">
-        <div class="container">
-            <div class="row mb-5">
-                <div class="col-12">
-                    <h2 class="text-white border-start border-4 border-primary ps-3">Projelerim</h2>
+                <div class="terminal-line">
+                    <span class="prompt">></span> <span class="cmd">erenmente.contact_info()</span>
                 </div>
-            </div>
-            
-            <div class="row g-5"> <div class="col-md-6">
-                    <div class="project-card h-100">
-                        <div class="bg-watermark">Digital Menu</div>
-                        
-                        <div class="card-body-content p-4 d-flex flex-column h-100">
-                            
-                            <div class="d-flex justify-content-between align-items-start mb-3">
-                                <div>
-                                    <h3 class="text-white fw-bold mb-1">Sistem Özellikleri</h3>
-                                    <small class="text-primary">Restaurant Ordering System</small>
-                                </div>
-                                <div class="icon-box">
-                                    <i class="fas fa-utensils fa-2x text-muted"></i>
-                                </div>
-                            </div>
-                            
-                            <ul class="feature-list text-light opacity-75 small mb-4 flex-grow-1">
-                                <li><i class="fas fa-check text-primary me-2"></i>Dinamik sepet & LocalStorage</li>
-                                <li><i class="fas fa-check text-primary me-2"></i>Anlık arama ve kategori filtreleme</li>
-                                <li><i class="fas fa-check text-primary me-2"></i>QR Kod oluşturma ve indirme</li>
-                            </ul>
-
-                            <div class="card-footer-custom d-flex justify-content-between align-items-center mt-3">
-                                <div class="tech-badges">
-                                    <span class="badge bg-secondary-soft">JavaScript</span>
-                                    <span class="badge bg-secondary-soft">Bootstrap</span>
-                                </div>
-                                <a href="#" class="btn btn-primary btn-sm px-4 shine-effect">İncele</a>
-                            </div>
-                        </div>
-                    </div>
+                
+                <div class="terminal-output string">
+                    "iletisim@erenmente.com"
                 </div>
 
-                <div class="col-md-6">
-                    <div class="project-card h-100">
-                        <div class="bg-watermark">Assistant</div>
-                        
-                        <div class="card-body-content p-4 d-flex flex-column h-100">
-                            
-                            <div class="d-flex justify-content-between align-items-start mb-3">
-                                <div>
-                                    <h3 class="text-white fw-bold mb-1">Proje Detayları</h3>
-                                    <small class="text-success">AI Lecture Mentor</small>
-                                </div>
-                                <div class="icon-box">
-                                    <i class="fas fa-graduation-cap fa-2x text-muted"></i>
-                                </div>
-                            </div>
-                            
-                            <ul class="feature-list text-light opacity-75 small mb-4 flex-grow-1">
-                                <li><i class="fas fa-robot text-success me-2"></i>Çift Modlu AI (Mentor vs Prof)</li>
-                                <li><i class="fas fa-server text-success me-2"></i>Failover sistemi (%99 uptime)</li>
-                                <li><i class="fas fa-code-branch text-success me-2"></i>Flask Backend & Groq API</li>
-                            </ul>
-
-                            <div class="card-footer-custom d-flex justify-content-between align-items-center mt-3">
-                                <div class="action-buttons z-index-fix">
-                                    <a href="#" class="btn btn-success btn-sm me-1">Canlı Demo</a>
-                                    <a href="#" class="btn btn-outline-light btn-sm">Github</a>
-                                </div>
-                                <div class="tech-badges text-end">
-                                    <span class="badge bg-secondary-soft">Python</span>
-                                    <span class="badge bg-secondary-soft">Groq</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                <div class="terminal-line last-line">
+                    <span class="prompt">></span> <span class="cursor-block"></span>
                 </div>
 
             </div>
         </div>
-    </section>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="js/script.js"></script>
+    </main>
+
 </body>
 </html>
