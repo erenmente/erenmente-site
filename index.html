@@ -13,13 +13,15 @@
                 extend: {
                     colors: {
                         brand: {
-                            bg: '#0f172a',      // Slate 900 (Arka Plan)
-                            card: '#1e293b',    // Slate 800 (Kartlar - Ön Yüz)
-                            border: '#334155',  // Slate 700 (Kenarlıklar)
-                            primary: '#6366f1', // Indigo 500 (Ana Renk)
-                            hover: '#4f46e5',   // Indigo 600 (Hover Rengi)
-                            accent: '#a855f7',  // Purple 500 (Gradyan için)
-                            darker: '#0b1120',  // Daha koyu arka plan (Kart Arka Yüzü)
+                            bg: '#ffffff',
+                            surface: '#f8fafc',
+                            text: '#0f172a',
+                            muted: '#64748b',
+                            border: '#e2e8f0',
+                            primary: '#4f46e5',
+                            hover: '#4338ca',
+                            accent: '#9333ea',
+                            card_back: '#1e293b',
                         }
                     },
                     fontFamily: {
@@ -34,63 +36,49 @@
                             '50%': { 'background-size': '200% 200%', 'background-position': 'right center' },
                         },
                     },
-                    // Flip Card için gerekli özel utility'ler
-                    perspective: {
-                        '1000': '1000px',
-                    },
-                    transformStyle: {
-                        'preserve-3d': 'preserve-3d',
-                    },
-                    backfaceVisibility: {
-                        'hidden': 'hidden',
-                    },
-                    rotate: {
-                        'y-180': 'rotateY(180deg)',
-                    }
+                    plugins: [
+                        function ({ addUtilities }) {
+                            addUtilities({
+                                '.perspective-1000': { perspective: '1000px' },
+                                '.transform-style-preserve-3d': { transformStyle: 'preserve-3d' },
+                                '.backface-hidden': { backfaceVisibility: 'hidden' },
+                                '.rotate-y-180': { transform: 'rotateY(180deg' },
+                            })
+                        }
+                    ],
                 }
-            },
-            plugins: [
-                // Tailwind'in varsayılan utility'leri bu iş için yeterli, ek plugin gerekmez.
-                // Aşağıdaki custom utility'leri manuel olarak tanımlıyoruz.
-                function ({ addUtilities }) {
-                    addUtilities({
-                        '.perspective-1000': { perspective: '1000px' },
-                        '.transform-style-preserve-3d': { transformStyle: 'preserve-3d' },
-                        '.backface-hidden': { backfaceVisibility: 'hidden' },
-                        '.rotate-y-180': { transform: 'rotateY(180deg)' },
-                    })
-                }
-            ],
+            }
         }
     </script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         body { font-family: 'Inter', sans-serif; }
-        /* Hover durumunda dönüş efekti için */
-        .group:hover .group-hover\:rotate-y-180 {
-            transform: rotateY(180deg);
-        }
+        .group:hover .group-hover\:rotate-y-180 { transform: rotateY(180deg); }
+        .perspective-1000 { perspective: 1000px; }
+        .transform-style-preserve-3d { transform-style: preserve-3d; }
+        .backface-hidden { backface-visibility: hidden; }
+        .rotate-y-180 { transform: rotateY(180deg); }
     </style>
 </head>
 
-<body class="bg-brand-bg text-slate-300 antialiased selection:bg-brand-primary selection:text-white">
+<body class="bg-brand-bg text-brand-text antialiased selection:bg-brand-primary selection:text-white">
 
-    <nav class="fixed w-full z-50 bg-brand-bg/90 backdrop-blur-md border-b border-brand-border transition-all duration-300">
+    <nav class="fixed w-full z-50 bg-white/80 backdrop-blur-md border-b border-brand-border transition-all duration-300">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16">
                 <div class="flex-shrink-0 cursor-pointer group">
                     <a href="#" class="text-2xl font-extrabold tracking-tight">
-                        <span class="bg-clip-text text-transparent bg-gradient-to-r from-white via-brand-primary to-brand-accent animate-gradient-x bg-[length:200%_auto]">
+                        <span class="bg-clip-text text-transparent bg-gradient-to-r from-brand-primary via-brand-accent to-brand-primary animate-gradient-x bg-[length:200%_auto]">
                             erenmente
                         </span>
                     </a>
                 </div>
                 <div class="hidden md:block">
                     <div class="ml-10 flex items-baseline space-x-8">
-                        <a href="#about" class="hover:text-white transition-colors px-3 py-2 rounded-md text-sm font-medium">Hakkımda</a>
-                        <a href="#skills" class="hover:text-white transition-colors px-3 py-2 rounded-md text-sm font-medium">Yetenekler</a>
-                        <a href="#projects" class="hover:text-white transition-colors px-3 py-2 rounded-md text-sm font-medium">Projeler</a>
-                        <a href="#contact" class="bg-brand-primary hover:bg-brand-hover text-white px-4 py-2 rounded-md text-sm font-medium transition-all shadow-lg shadow-indigo-500/30">İletişim</a>
+                        <a href="#about" class="text-brand-text hover:text-brand-primary transition-colors px-3 py-2 rounded-md text-sm font-medium">Hakkımda</a>
+                        <a href="#skills" class="text-brand-text hover:text-brand-primary transition-colors px-3 py-2 rounded-md text-sm font-medium">Yetenekler</a>
+                        <a href="#projects" class="text-brand-text hover:text-brand-primary transition-colors px-3 py-2 rounded-md text-sm font-medium">Projeler</a>
+                        <a href="#contact" class="bg-brand-primary hover:bg-brand-hover text-white px-4 py-2 rounded-md text-sm font-medium transition-all shadow-md shadow-indigo-500/20">İletişim</a>
                     </div>
                 </div>
             </div>
@@ -98,92 +86,99 @@
     </nav>
 
     <header id="about" class="min-h-screen flex items-center justify-center pt-16 relative overflow-hidden">
-        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-brand-primary/20 rounded-full blur-[100px] -z-10"></div>
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-brand-primary/5 rounded-full blur-[120px] -z-10"></div>
+        
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <div class="inline-block px-3 py-1 mb-6 text-xs font-semibold tracking-wider text-brand-primary uppercase bg-brand-primary/10 rounded-full border border-brand-primary/20">
+            <div class="inline-block px-3 py-1 mb-6 text-xs font-semibold tracking-wider text-brand-primary uppercase bg-indigo-50 rounded-full border border-indigo-100">
                 Yazılım Mühendisliği Öğrencisi
             </div>
-            <h1 class="text-5xl md:text-7xl font-bold text-white mb-6 tracking-tight">
+            <h1 class="text-5xl md:text-7xl font-bold text-slate-900 mb-6 tracking-tight">
                 Eren Mente
             </h1>
-            <p class="text-xl text-slate-400 font-light mb-8">
+            <p class="text-xl text-brand-muted font-light mb-8">
                 Fırat Üniversitesi
             </p>
-            <p class="max-w-2xl mx-auto text-slate-400 mb-10 leading-relaxed text-base">
+            <p class="max-w-2xl mx-auto text-slate-600 mb-10 leading-relaxed text-base">
                 Yazılım mühendisliği 1. sınıf öğrencisi olarak algoritmik düşünce yapısı ve modern programlama dilleri üzerine temellerimi atıyorum. 
                 <br><br>
-                Şu anda odak noktam: <strong class="text-white">Java, Python ve Temel Web Teknolojileri.</strong>
+                Şu anda odak noktam: <strong class="text-brand-primary">Java, Python ve Full-Stack Geliştirme.</strong>
                 Teorik bilgiyi pratiğe dökmek ve sektörel standartları erken aşamada öğrenmek için çalışıyorum.
             </p>
             <div class="flex justify-center gap-4">
                 <a href="#projects" class="px-6 py-3 bg-brand-primary text-white font-medium rounded-lg hover:bg-brand-hover transition-all shadow-lg shadow-indigo-500/20">
                     Projelerimi Gör
                 </a>
-                <a href="#contact" class="px-6 py-3 border border-brand-border text-slate-300 font-medium rounded-lg hover:border-white hover:text-white transition-colors">
+                <a href="#contact" class="px-6 py-3 border border-brand-border text-slate-600 font-medium rounded-lg hover:border-brand-primary hover:text-brand-primary transition-colors bg-white">
                     Bana Ulaşın
                 </a>
             </div>
         </div>
     </header>
 
-    <section id="skills" class="py-20 bg-slate-900/50">
+    <section id="skills" class="py-20 bg-brand-surface border-y border-brand-border">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-2xl font-bold text-white mb-10 flex items-center">
+            <h2 class="text-2xl font-bold text-slate-900 mb-10 flex items-center">
                 <span class="w-2 h-8 bg-brand-primary rounded-sm mr-3"></span>
                 Teknik Yetkinlikler
             </h2>
             <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                <div class="bg-brand-card p-5 rounded-lg border border-brand-border hover:border-brand-primary transition-all group">
-                    <h3 class="text-lg font-semibold text-white group-hover:text-brand-primary">Java</h3>
+                <div class="bg-white p-5 rounded-lg border border-brand-border hover:border-brand-primary hover:shadow-md transition-all group">
+                    <h3 class="text-lg font-semibold text-slate-800 group-hover:text-brand-primary">Java</h3>
                     <p class="text-xs text-slate-500 mt-1">OOP, Algoritma</p>
                 </div>
-                <div class="bg-brand-card p-5 rounded-lg border border-brand-border hover:border-brand-primary transition-all group">
-                    <h3 class="text-lg font-semibold text-white group-hover:text-brand-primary">Python</h3>
-                    <p class="text-xs text-slate-500 mt-1">Scripting, Giriş Seviyesi</p>
+                <div class="bg-white p-5 rounded-lg border border-brand-border hover:border-brand-primary hover:shadow-md transition-all group">
+                    <h3 class="text-lg font-semibold text-slate-800 group-hover:text-brand-primary">Python</h3>
+                    <p class="text-xs text-slate-500 mt-1">Flask, Scripting</p>
                 </div>
-                <div class="bg-brand-card p-5 rounded-lg border border-brand-border hover:border-brand-primary transition-all group">
-                    <h3 class="text-lg font-semibold text-white group-hover:text-brand-primary">Web Temelleri</h3>
-                    <p class="text-xs text-slate-500 mt-1">HTML5, CSS3</p>
+                <div class="bg-white p-5 rounded-lg border border-brand-border hover:border-brand-primary hover:shadow-md transition-all group">
+                    <h3 class="text-lg font-semibold text-slate-800 group-hover:text-brand-primary">Web Stack</h3>
+                    <p class="text-xs text-slate-500 mt-1">HTML5, Bootstrap, JS</p>
                 </div>
-                <div class="bg-brand-card p-5 rounded-lg border border-brand-border hover:border-brand-primary transition-all group">
-                    <h3 class="text-lg font-semibold text-white group-hover:text-brand-primary">Git</h3>
-                    <p class="text-xs text-slate-500 mt-1">Versiyon Kontrolü</p>
+                <div class="bg-white p-5 rounded-lg border border-brand-border hover:border-brand-primary hover:shadow-md transition-all group">
+                    <h3 class="text-lg font-semibold text-slate-800 group-hover:text-brand-primary">AI & API</h3>
+                    <p class="text-xs text-slate-500 mt-1">Gemini Integration</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="projects" class="py-20 relative z-10">
+    <section id="projects" class="py-20 bg-white">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-2xl font-bold text-white mb-10 flex items-center">
+            <h2 class="text-2xl font-bold text-slate-900 mb-10 flex items-center">
                 <span class="w-2 h-8 bg-brand-primary rounded-sm mr-3"></span>
-                Örnek Çalışmalar
+                Öne Çıkan Projeler
             </h2>
             
-            <div class="grid md:grid-cols-3 gap-6">
+            <div class="grid md:grid-cols-2 gap-8 justify-center">
 
-                <div class="group perspective-1000 h-80 cursor-pointer rounded-xl relative">
-                    <div class="relative w-full h-full transition-transform duration-700 transform-style-preserve-3d group-hover:rotate-y-180 shadow-lg group-hover:shadow-indigo-500/20 rounded-xl">
+                <div class="group perspective-1000 h-80 cursor-pointer rounded-xl relative w-full">
+                    <div class="relative w-full h-full transition-transform duration-700 transform-style-preserve-3d group-hover:rotate-y-180 shadow-xl shadow-slate-200/50 rounded-xl">
                         
-                        <div class="absolute w-full h-full backface-hidden bg-brand-card border border-brand-border rounded-xl p-8 flex flex-col justify-center items-center text-center overflow-hidden">
-                            <div class="absolute inset-0 bg-gradient-to-br from-brand-primary/5 to-brand-accent/5 opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
-                            
-                            <h3 class="text-4xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-brand-primary to-brand-accent mb-4 relative z-10">
-                                Java App
+                        <div class="absolute w-full h-full backface-hidden bg-white border border-brand-border rounded-xl p-8 flex flex-col justify-center items-center text-center overflow-hidden">
+                            <div class="absolute inset-0 bg-gradient-to-br from-indigo-50 to-white opacity-50"></div>
+                            <span class="text-4xl mb-4 relative z-10">🍽️</span>
+                            <h3 class="text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-brand-primary to-brand-accent mb-2 relative z-10">
+                                Digital Menu
                             </h3>
-                            <h4 class="text-xl font-bold text-white relative z-10">
-                                Java Veri Yapıları
+                            <h4 class="text-lg font-semibold text-slate-700 relative z-10">
+                                Restaurant Ordering System
                             </h4>
+                            <div class="mt-4 flex gap-2 justify-center relative z-10">
+                                <span class="px-2 py-1 text-xs bg-slate-100 text-slate-600 rounded border border-slate-200">JavaScript</span>
+                                <span class="px-2 py-1 text-xs bg-slate-100 text-slate-600 rounded border border-slate-200">Bootstrap</span>
+                            </div>
                         </div>
 
-                        <div class="absolute w-full h-full backface-hidden rotate-y-180 bg-brand-darker border border-brand-primary/50 rounded-xl p-6 flex flex-col justify-center overflow-hidden">
-                            <h3 class="text-lg font-bold text-white mb-3">Proje Detayları</h3>
-                            <p class="text-sm text-slate-400 mb-6 leading-relaxed flex-1 overflow-y-auto">
-                                Linked List ve Stack gibi temel veri yapılarının konsol tabanlı manuel implementasyonu. Algoritmik mantığı kavramak amacıyla geliştirilmiştir.
-                            </p>
-                            <a href="https://github.com/erenmente" target="_blank" 
+                        <div class="absolute w-full h-full backface-hidden rotate-y-180 bg-brand-card_back border border-brand-primary/20 rounded-xl p-8 flex flex-col justify-center overflow-hidden">
+                            <h3 class="text-lg font-bold text-white mb-3">Sistem Özellikleri</h3>
+                            <ul class="text-sm text-slate-300 mb-6 space-y-2 list-disc list-inside text-left">
+                                <li>Dinamik sepet & LocalStorage</li>
+                                <li>Anlık arama ve kategori filtreleme</li>
+                                <li>QR Kod oluşturma ve indirme</li>
+                            </ul>
+                            <a href="https://github.com/erenmente/yemek-sepeti-js" target="_blank" 
                                class="inline-flex items-center justify-center px-4 py-2 bg-brand-primary text-white text-sm font-medium rounded-lg hover:bg-brand-hover transition-all w-full">
-                                Kaynağı İncele
+                                Github'da İncele
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                                 </svg>
@@ -192,54 +187,40 @@
                     </div>
                 </div>
 
-                <div class="group perspective-1000 h-80 cursor-pointer rounded-xl relative">
-                    <div class="relative w-full h-full transition-transform duration-700 transform-style-preserve-3d group-hover:rotate-y-180 shadow-lg group-hover:shadow-indigo-500/20 rounded-xl">
-                        <div class="absolute w-full h-full backface-hidden bg-brand-card border border-brand-border rounded-xl p-8 flex flex-col justify-center items-center text-center overflow-hidden">
-                            <div class="absolute inset-0 bg-gradient-to-br from-brand-primary/5 to-brand-accent/5 opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
-                            <h3 class="text-4xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-brand-accent to-brand-primary mb-4 relative z-10">
-                                Web Portfolio
+                <div class="group perspective-1000 h-80 cursor-pointer rounded-xl relative w-full">
+                    <div class="relative w-full h-full transition-transform duration-700 transform-style-preserve-3d group-hover:rotate-y-180 shadow-xl shadow-slate-200/50 rounded-xl">
+                        
+                        <div class="absolute w-full h-full backface-hidden bg-white border border-brand-border rounded-xl p-8 flex flex-col justify-center items-center text-center overflow-hidden">
+                            <div class="absolute inset-0 bg-gradient-to-br from-indigo-50 to-white opacity-50"></div>
+                            <span class="text-4xl mb-4 relative z-10">🎓</span>
+                            <h3 class="text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-brand-accent to-brand-primary mb-2 relative z-10">
+                                Fırat Assistant
                             </h3>
-                            <h4 class="text-xl font-bold text-white relative z-10">
-                                Kişisel Portfolyo
+                            <h4 class="text-lg font-semibold text-slate-700 relative z-10">
+                                AI Lecture Mentor
                             </h4>
+                            <div class="mt-4 flex gap-2 justify-center relative z-10">
+                                <span class="px-2 py-1 text-xs bg-slate-100 text-slate-600 rounded border border-slate-200">Python</span>
+                                <span class="px-2 py-1 text-xs bg-slate-100 text-slate-600 rounded border border-slate-200">Gemini AI</span>
+                            </div>
                         </div>
-                        <div class="absolute w-full h-full backface-hidden rotate-y-180 bg-brand-darker border border-brand-primary/50 rounded-xl p-6 flex flex-col justify-center overflow-hidden">
-                            <h3 class="text-lg font-bold text-white mb-3">Proje Detayları</h3>
-                            <p class="text-sm text-slate-400 mb-6 leading-relaxed flex-1 overflow-y-auto">
-                                Modern web teknolojileri (HTML5, Tailwind CSS) kullanılarak tasarlanmış, %100 mobil uyumlu (responsive) ve hızlı kişisel web sitesi.
-                            </p>
-                            <a href="https://github.com/erenmente" target="_blank" class="inline-flex items-center justify-center px-4 py-2 bg-brand-primary text-white text-sm font-medium rounded-lg hover:bg-brand-hover transition-all w-full">
-                                Kaynağı İncele
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                                </svg>
-                            </a>
-                        </div>
-                    </div>
-                </div>
 
-                <div class="group perspective-1000 h-80 cursor-pointer rounded-xl relative">
-                    <div class="relative w-full h-full transition-transform duration-700 transform-style-preserve-3d group-hover:rotate-y-180 shadow-lg group-hover:shadow-indigo-500/20 rounded-xl">
-                        <div class="absolute w-full h-full backface-hidden bg-brand-card border border-brand-border rounded-xl p-8 flex flex-col justify-center items-center text-center overflow-hidden">
-                            <div class="absolute inset-0 bg-gradient-to-br from-brand-primary/5 to-brand-accent/5 opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
-                            <h3 class="text-4xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-brand-primary to-brand-accent mb-4 relative z-10">
-                                Python Script
-                            </h3>
-                            <h4 class="text-xl font-bold text-white relative z-10">
-                                Python Otomasyon
-                            </h4>
-                        </div>
-                        <div class="absolute w-full h-full backface-hidden rotate-y-180 bg-brand-darker border border-brand-primary/50 rounded-xl p-6 flex flex-col justify-center overflow-hidden">
+                        <div class="absolute w-full h-full backface-hidden rotate-y-180 bg-brand-card_back border border-brand-primary/20 rounded-xl p-8 flex flex-col justify-center overflow-hidden">
                             <h3 class="text-lg font-bold text-white mb-3">Proje Detayları</h3>
-                            <p class="text-sm text-slate-400 mb-6 leading-relaxed flex-1 overflow-y-auto">
-                                Günlük dosya işlemleri, veri düzenleme ve basit analiz görevlerini otomatize eden kullanışlı Python scriptleri koleksiyonu.
-                            </p>
-                            <a href="https://github.com/erenmente" target="_blank" class="inline-flex items-center justify-center px-4 py-2 bg-brand-primary text-white text-sm font-medium rounded-lg hover:bg-brand-hover transition-all w-full">
-                                Kaynağı İncele
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                                </svg>
-                            </a>
+                            <ul class="text-sm text-slate-300 mb-4 space-y-1 list-disc list-inside text-left">
+                                <li>Çift Modlu AI (Mentor vs Prof)</li>
+                                <li>Failover sistemi (%99 Uptime)</li>
+                                <li>Flask Backend & Google Gemini</li>
+                            </ul>
+                            
+                            <div class="flex gap-2">
+                                <a href="https://dersasistani.onrender.com" target="_blank" class="flex-1 inline-flex items-center justify-center px-3 py-2 bg-emerald-600 text-white text-xs font-medium rounded-lg hover:bg-emerald-700 transition-all">
+                                    Canlı Demo
+                                </a>
+                                <a href="https://github.com/erenmente/ders-asistan" target="_blank" class="flex-1 inline-flex items-center justify-center px-3 py-2 bg-brand-primary text-white text-xs font-medium rounded-lg hover:bg-brand-hover transition-all">
+                                    Github
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -248,10 +229,10 @@
         </div>
     </section>
 
-    <section id="contact" class="py-24 bg-gradient-to-b from-brand-bg to-brand-card border-t border-brand-border relative z-10">
+    <section id="contact" class="py-24 bg-brand-surface border-t border-brand-border">
         <div class="max-w-3xl mx-auto px-4 text-center">
-            <h2 class="text-3xl font-bold text-white mb-6">İletişime Geçin</h2>
-            <p class="text-slate-400 mb-10 text-lg">
+            <h2 class="text-3xl font-bold text-slate-900 mb-6">İletişime Geçin</h2>
+            <p class="text-slate-600 mb-10 text-lg">
                 Staj fırsatları, proje işbirlikleri veya sadece merhaba demek için bana ulaşabilirsiniz.
             </p>
             
@@ -272,11 +253,11 @@
         </div>
     </section>
 
-    <footer class="bg-brand-bg border-t border-brand-border py-8 relative z-10">
+    <footer class="bg-white border-t border-brand-border py-8">
         <div class="max-w-6xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-4">
             <p class="text-slate-500 text-sm">&copy; <span id="year">2025</span> Eren Mente.</p>
             <div class="flex space-x-6">
-                <a href="https://github.com/erenmente" target="_blank" class="text-slate-400 hover:text-white transition-colors">
+                <a href="https://github.com/erenmente" target="_blank" class="text-slate-400 hover:text-slate-900 transition-colors">
                     <span class="sr-only">GitHub</span>
                     <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
                         <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd" />
@@ -293,18 +274,16 @@
     </footer>
 
     <script>
-        // 1. Yılı Otomatik Güncelle
         document.getElementById('year').textContent = new Date().getFullYear();
 
-        // 2. Navbar Scroll Efekti
         const nav = document.querySelector('nav');
         window.addEventListener('scroll', () => {
             if (window.scrollY > 10) {
-                nav.classList.add('shadow-xl', 'bg-brand-bg/95');
-                nav.classList.remove('bg-brand-bg/90');
+                nav.classList.add('shadow-lg', 'bg-white/95');
+                nav.classList.remove('bg-white/80');
             } else {
-                nav.classList.remove('shadow-xl', 'bg-brand-bg/95');
-                nav.classList.add('bg-brand-bg/90');
+                nav.classList.remove('shadow-lg', 'bg-white/95');
+                nav.classList.add('bg-white/80');
             }
         });
     </script>
