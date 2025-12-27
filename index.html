@@ -1,104 +1,193 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="tr" class="scroll-smooth">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolyo | Eren Mente</title>
+    <meta name="description" content="Muhammet Eren Mente - Full-Stack Geliştirici Portfolyosu">
+    <title>Muhammet Eren Mente | Full-Stack Developer</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            dark: '#0f172a',
+                            accent: '#10b981', // Emerald 500
+                            card: '#1e293b'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Inter', sans-serif; }
+        body {
+            font-family: 'Inter', sans-serif;
+        }
     </style>
 </head>
-<body class="bg-white text-slate-900 antialiased">
 
-    <nav class="w-full py-8 px-6 md:px-12 flex justify-between items-center max-w-5xl mx-auto">
-        <div class="font-bold text-lg tracking-tight">Eren Mente</div>
-        <div class="space-x-8 text-sm font-medium text-slate-500">
-            <a href="#" class="hover:text-black transition">Projeler</a>
-            <a href="mailto:mail@adresin.com" class="hover:text-black transition">İletişim</a>
+<body class="bg-brand-dark text-slate-300 antialiased selection:bg-brand-accent selection:text-white">
+
+    <nav class="fixed w-full z-50 bg-brand-dark/90 backdrop-blur-sm border-b border-slate-800">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex-shrink-0">
+                    <span class="text-xl font-bold text-white tracking-wider">MENTE<span
+                            class="text-brand-accent">.</span></span>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8">
+                        <a href="#about"
+                            class="hover:text-brand-accent px-3 py-2 rounded-md text-sm font-medium transition-colors">Hakkımda</a>
+                        <a href="#skills"
+                            class="hover:text-brand-accent px-3 py-2 rounded-md text-sm font-medium transition-colors">Yetenekler</a>
+                        <a href="#projects"
+                            class="hover:text-brand-accent px-3 py-2 rounded-md text-sm font-medium transition-colors">Projeler</a>
+                        <a href="https://github.com/erenmente" target="_blank"
+                            class="bg-slate-800 hover:bg-brand-accent hover:text-white px-4 py-2 rounded-md text-sm font-medium transition-all">GitHub</a>
+                    </div>
+                </div>
+            </div>
         </div>
     </nav>
 
-    <main class="max-w-5xl mx-auto px-6 md:px-12 mt-20 md:mt-32 mb-20">
-        
-        <section class="mb-24">
-            <h1 class="text-5xl md:text-8xl font-extrabold tracking-tight leading-tight mb-6 text-slate-900">
-                Software<br>
-                <span class="text-slate-300">Engineering.</span>
-            </h1>
-
-            <div class="flex flex-wrap gap-3 text-lg font-medium text-slate-600">
-                <span>Java</span>
-                <span class="text-slate-300">•</span>
-                <span>Python</span>
-                <span class="text-slate-300">•</span>
-                <span>Backend Systems</span>
-                <span class="text-slate-300">•</span>
-                <span>Algorithms</span>
+    <header id="about" class="min-h-screen flex items-center justify-center pt-16">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div
+                class="inline-block px-3 py-1 mb-4 text-xs font-semibold tracking-wider text-brand-accent uppercase bg-brand-accent/10 rounded-full">
+                Full-Stack Geliştirici
             </div>
-
-            <div class="mt-10">
-                <a href="https://github.com/kullaniciadin" target="_blank" class="inline-flex items-center gap-2 border-b-2 border-black pb-1 hover:text-slate-600 hover:border-slate-600 transition font-bold">
-                    <i class="fa-brands fa-github"></i> GitHub Profilim
+            <h1 class="text-5xl md:text-7xl font-bold text-white mb-6 tracking-tight">
+                Muhammet Eren Mente
+            </h1>
+            <p class="text-xl md:text-2xl text-slate-400 font-light mb-8">
+                <span class="text-brand-accent font-mono">&lt;</span> Kod, Kahve ve Java <span
+                    class="text-brand-accent font-mono">/&gt;</span>
+            </p>
+            <p class="max-w-2xl mx-auto text-slate-400 mb-10 leading-relaxed">
+                Java ekosistemi ve Git teknolojileri üzerine uzmanlaşmış yazılım geliştiricisi.
+                Modern web mimarileri ve ölçeklenebilir backend çözümleri üretiyorum.
+            </p>
+            <div class="flex justify-center gap-4">
+                <a href="#projects"
+                    class="px-8 py-3 bg-brand-accent text-white font-semibold rounded hover:bg-emerald-600 transition-colors">
+                    Projeleri İncele
+                </a>
+                <a href="#skills"
+                    class="px-8 py-3 border border-slate-700 text-slate-300 font-semibold rounded hover:border-brand-accent hover:text-brand-accent transition-colors">
+                    Teknolojiler
                 </a>
             </div>
-        </section>
+        </div>
+    </header>
 
-        <section>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                
-                <div class="md:col-span-2 p-8 bg-slate-50 rounded-xl border border-slate-100">
-                    <div class="flex justify-between mb-4">
-                        <h3 class="font-bold text-slate-900">Tech Stack</h3>
-                        <i class="fa-solid fa-layer-group text-slate-400"></i>
-                    </div>
-                    <ul class="grid grid-cols-2 gap-2 text-sm text-slate-600 font-mono">
-                        <li>> Java (Core & OOP)</li>
-                        <li>> Python Scripting</li>
-                        <li>> Data Structures</li>
-                        <li>> SQL Basics</li>
-                    </ul>
+    <section id="skills" class="py-20 bg-slate-900 relative">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-white mb-12 border-l-4 border-brand-accent pl-4">Teknik Yetkinlikler</h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                <div
+                    class="bg-brand-card p-6 rounded-lg border border-slate-800 hover:border-brand-accent transition-colors group">
+                    <h3 class="text-xl font-semibold text-white group-hover:text-brand-accent">Java</h3>
+                    <p class="text-sm text-slate-500 mt-2">Spring Boot, JVM</p>
                 </div>
-
-                <div class="p-8 bg-slate-50 rounded-xl border border-slate-100">
-                    <div class="flex justify-between mb-4">
-                        <h3 class="font-bold text-slate-900">Araçlar</h3>
-                        <i class="fa-solid fa-terminal text-slate-400"></i>
-                    </div>
-                    <ul class="text-sm text-slate-600 font-mono space-y-2">
-                        <li>Git & GitHub</li>
-                        <li>VS Code</li>
-                        <li>Linux / Bash</li>
-                    </ul>
+                <div
+                    class="bg-brand-card p-6 rounded-lg border border-slate-800 hover:border-brand-accent transition-colors group">
+                    <h3 class="text-xl font-semibold text-white group-hover:text-brand-accent">C#</h3>
+                    <p class="text-sm text-slate-500 mt-2">.NET Core, Entity Framework</p>
                 </div>
-
-                <div class="p-8 bg-slate-50 rounded-xl border border-slate-100">
-                    <div class="flex justify-between mb-4">
-                        <h3 class="font-bold text-slate-900">Odak</h3>
-                        <i class="fa-solid fa-crosshairs text-slate-400"></i>
-                    </div>
-                    <p class="text-sm text-slate-600 leading-relaxed">
-                        Temiz kod prensipleri ve ölçeklenebilir backend mimarisi.
-                    </p>
+                <div
+                    class="bg-brand-card p-6 rounded-lg border border-slate-800 hover:border-brand-accent transition-colors group">
+                    <h3 class="text-xl font-semibold text-white group-hover:text-brand-accent">Git & GitHub</h3>
+                    <p class="text-sm text-slate-500 mt-2">CI/CD, Version Control</p>
                 </div>
+                <div
+                    class="bg-brand-card p-6 rounded-lg border border-slate-800 hover:border-brand-accent transition-colors group">
+                    <h3 class="text-xl font-semibold text-white group-hover:text-brand-accent">HTML / CSS</h3>
+                    <p class="text-sm text-slate-500 mt-2">Tailwind, Responsive Design</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-                <div class="md:col-span-2 p-8 bg-black rounded-xl text-white flex items-center justify-between">
-                    <div>
-                        <div class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">
-                            Status
+    <section id="projects" class="py-20 bg-slate-900">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-white mb-12 border-l-4 border-brand-accent pl-4">Seçilmiş Projeler</h2>
+            <div class="grid md:grid-cols-2 gap-8">
+
+                <article
+                    class="bg-brand-card rounded-xl overflow-hidden border border-slate-800 hover:shadow-2xl hover:shadow-emerald-900/20 transition-all duration-300">
+                    <img src="https://placehold.co/600x300/1e293b/10b981?text=Java+Data+Analysis"
+                        alt="Java Veri Analizi Projesi"
+                        class="w-full h-48 object-cover opacity-80 hover:opacity-100 transition-opacity">
+                    <div class="p-8">
+                        <div class="flex justify-between items-start mb-4">
+                            <h3 class="text-2xl font-bold text-white">Java ile Veri Analizi</h3>
+                            <span class="px-2 py-1 text-xs font-mono bg-slate-800 text-brand-accent rounded">Java</span>
                         </div>
-                        <h3 class="text-xl font-bold font-mono">
-                            Learning: Flask API Development_
-                        </h3>
+                        <p class="text-slate-400 mb-6">
+                            Büyük veri setlerinin işlenmesi ve analizi için geliştirilmiş, yüksek performanslı backend
+                            mimarisi. Veri görselleştirme kütüphaneleri entegrasyonu içerir.
+                        </p>
+                        <a href="https://github.com/erenmente" target="_blank"
+                            class="inline-flex items-center text-brand-accent hover:text-white font-medium transition-colors">
+                            Kodu İncele
+                            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                            </svg>
+                        </a>
                     </div>
-                </div>
+                </article>
+
+                <article
+                    class="bg-brand-card rounded-xl overflow-hidden border border-slate-800 hover:shadow-2xl hover:shadow-emerald-900/20 transition-all duration-300">
+                    <img src="https://placehold.co/600x300/1e293b/10b981?text=Git+Training+Kit" alt="Git Eğitim Seti"
+                        class="w-full h-48 object-cover opacity-80 hover:opacity-100 transition-opacity">
+                    <div class="p-8">
+                        <div class="flex justify-between items-start mb-4">
+                            <h3 class="text-2xl font-bold text-white">Git Eğitim Seti</h3>
+                            <span
+                                class="px-2 py-1 text-xs font-mono bg-slate-800 text-brand-accent rounded">Education</span>
+                        </div>
+                        <p class="text-slate-400 mb-6">
+                            Versiyon kontrol sistemlerinin temellerini ve ileri düzey Git komutlarını kapsayan,
+                            interaktif senaryolar içeren kapsamlı dökümantasyon projesi.
+                        </p>
+                        <a href="https://github.com/erenmente" target="_blank"
+                            class="inline-flex items-center text-brand-accent hover:text-white font-medium transition-colors">
+                            Kodu İncele
+                            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </article>
 
             </div>
-        </section>
+        </div>
+    </section>
 
-    </main>
+    <footer class="bg-brand-dark border-t border-slate-800 py-12">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <p class="text-slate-500 mb-4">&copy; <span id="year"></span> Muhammet Eren Mente. Tüm hakları saklıdır.</p>
+            <div class="flex justify-center space-x-6">
+                <a href="https://github.com/erenmente" target="_blank"
+                    class="text-slate-400 hover:text-white transition-colors">
+                    GitHub Profilim
+                </a>
+            </div>
+        </div>
+    </footer>
 
+    <script src="assets/js/main.js"></script>
 </body>
+
 </html>
