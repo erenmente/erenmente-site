@@ -1,0 +1,44 @@
+/* Genel Font Ayarları */
+body { 
+    font-family: 'Inter', sans-serif; 
+}
+
+/* Kart çevirme efektleri için */
+.group:hover .group-hover\:rotate-y-180 { 
+    transform: rotateY(180deg); 
+}
+.perspective-1000 { 
+    perspective: 1000px; 
+}
+.transform-style-preserve-3d { 
+    transform-style: preserve-3d; 
+}
+.backface-hidden { 
+    backface-visibility: hidden; 
+}
+.rotate-y-180 { 
+    transform: rotateY(180deg); 
+}
+
+/* Mobil Menü Animasyonu */
+#mobile-menu { 
+    transition: max-height 0.3s ease-in-out; 
+    max-height: 0; 
+    overflow: hidden; 
+}
+#mobile-menu.active { 
+    max-height: 300px; 
+}
+
+/* İmleç Yanıp Sönme Efekti */
+.cursor {
+    display: inline-block;
+    width: 2px;
+    background-color: #4f46e5;
+    animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
