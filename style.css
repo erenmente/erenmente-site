@@ -1,44 +1,98 @@
-/* Genel Font Ayarları */
-body { 
-    font-family: 'Inter', sans-serif; 
+:root {
+    --bg-color: #f4f4f9;
+    --editor-bg: #ffffff;
+    --terminal-bg: #1e1e1e;
+    
+    /* Syntax Renkleri */
+    --kw-purple: #a626a4;
+    --str-green: #50a14f;
+    --cls-orange: #c18401;
+    --func-blue: #4078f2;
+
+    /* Terminal */
+    --term-text: #abb2bf;
+    --term-blue: #61afef;
+    --term-info: #5c6370;
 }
 
-/* Kart çevirme efektleri için */
-.group:hover .group-hover\:rotate-y-180 { 
-    transform: rotateY(180deg); 
-}
-.perspective-1000 { 
-    perspective: 1000px; 
-}
-.transform-style-preserve-3d { 
-    transform-style: preserve-3d; 
-}
-.backface-hidden { 
-    backface-visibility: hidden; 
-}
-.rotate-y-180 { 
-    transform: rotateY(180deg); 
+body {
+    background-color: var(--bg-color);
+    font-family: 'Courier New', monospace;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px;
 }
 
-/* Mobil Menü Animasyonu */
-#mobile-menu { 
-    transition: max-height 0.3s ease-in-out; 
-    max-height: 0; 
-    overflow: hidden; 
-}
-#mobile-menu.active { 
-    max-height: 300px; 
+.container {
+    width: 100%;
+    max-width: 650px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
 }
 
-/* İmleç Yanıp Sönme Efekti */
-.cursor {
-    display: inline-block;
-    width: 2px;
-    background-color: #4f46e5;
-    animation: blink 1s step-end infinite;
+.window-frame {
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    overflow: hidden;
+    font-size: 15px;
+}
+
+.window-header {
+    padding: 10px 15px;
+    display: flex;
+    gap: 8px;
+}
+
+.light-theme .window-header { background: #e5e5e5; }
+.dark-theme .window-header { background: #2d2d2d; }
+
+.dot { width: 12px; height: 12px; border-radius: 50%; }
+.red { background: #ff5f56; }
+.yellow { background: #ffbd2e; }
+.green { background: #27c93f; }
+
+.window-content { padding: 25px; line-height: 1.6; }
+
+/* Kod Renklendirme */
+.light-theme { background: var(--editor-bg); color: #333; }
+.keyword { color: var(--kw-purple); font-weight: bold; }
+.class-name { color: var(--cls-orange); }
+.string { color: var(--str-green); }
+.function { color: var(--func-blue); }
+
+/* Terminal Stilleri */
+.dark-theme { background: var(--terminal-bg); color: var(--term-text); }
+
+.terminal-line { 
+    display: flex; 
+    align-items: center; 
+    margin-bottom: 5px;
+}
+
+.terminal-output {
+    display: block;
+    margin-bottom: 15px;
+    min-height: 20px; /* Titremeyi önler */
+}
+
+.prompt { margin-right: 10px; color: var(--term-text); }
+.cmd { color: #fff; font-weight: bold; }
+.info { color: var(--term-info); font-style: italic; }
+.string.terminal-output { color: var(--term-blue); }
+
+.hidden { display: none; } /* JS açana kadar gizle */
+
+.cursor-block {
+    width: 10px;
+    height: 18px;
+    background: #ccc;
+    animation: blink 1s infinite;
 }
 
 @keyframes blink {
-    0%, 100% { opacity: 1; }
     50% { opacity: 0; }
 }

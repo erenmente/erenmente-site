@@ -1,67 +1,27 @@
 document.addEventListener('DOMContentLoaded', () => {
     
-    // --- 1. Yıl Güncelleme ---
-    document.getElementById('year').textContent = new Date().getFullYear();
+    // 1. Adım: İlk çıktı (500ms sonra)
+    setTimeout(() => {
+        document.getElementById('line1').textContent = 
+            '[INFO] Loading dependencies ... Done.';
+    }, 500);
 
-    // --- 2. Navbar Scroll Efekti ---
-    const nav = document.querySelector('nav');
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 10) {
-            nav.classList.add('shadow-lg', 'bg-white/95');
-            nav.classList.remove('bg-white/80');
-        } else {
-            nav.classList.remove('shadow-lg', 'bg-white/95');
-            nav.classList.add('bg-white/80');
-        }
-    });
+    // 2. Adım: İkinci çıktı (1500ms sonra)
+    setTimeout(() => {
+        document.getElementById('line2').textContent = 
+            '[INFO] Checking skills ... Java, Microservices, System Design verified.';
+    }, 1500);
 
-    // --- 3. Mobil Menü Toggle ---
-    const btn = document.getElementById('mobile-menu-btn');
-    const menu = document.getElementById('mobile-menu');
-    
-    if(btn && menu) {
-        btn.addEventListener('click', () => {
-            menu.classList.toggle('active');
-        });
-    }
+    // 3. Adım: İkinci komut satırını görünür yap (2500ms sonra)
+    setTimeout(() => {
+        document.getElementById('cmd2').classList.remove('hidden');
+        document.getElementById('cmd2').style.display = 'flex';
+    }, 2500);
 
-    // --- 4. Daktilo Efekti (Typewriter) ---
-    const words = ["Java", "Python", "Algoritmalar", "Veri Yapıları"];
-    let i = 0;
-    let timer;
-    let isDeleting = false;
-    const element = document.getElementById('typewriter');
+    // 4. Adım: İletişim bilgisini bas (3500ms sonra)
+    setTimeout(() => {
+        document.getElementById('line3').textContent = 
+            '"iletisim@erenmente.com"';
+    }, 3500);
 
-    function typeWriter() {
-        if (!element) return;
-        
-        const word = words[i];
-        let currentText = element.textContent;
-
-        if (!isDeleting && currentText.length < word.length) {
-            // Yazıyor
-            element.textContent = word.substring(0, currentText.length + 1);
-            timer = setTimeout(typeWriter, 100);
-        } else if (isDeleting && currentText.length > 0) {
-            // Siliyor
-            element.textContent = word.substring(0, currentText.length - 1);
-            timer = setTimeout(typeWriter, 50);
-        } else {
-            // Kelime bitti veya silme bitti
-            isDeleting = !isDeleting;
-            if (!isDeleting) {
-                // Sonraki kelimeye geç
-                i = (i + 1) % words.length;
-            }
-            // Bekleme süresi (Yazdıktan sonra bekle veya sildikten sonra bekle)
-            timer = setTimeout(typeWriter, isDeleting ? 1000 : 2000);
-        }
-    }
-    
-    // Başlat
-    typeWriter();
-
-    // --- 5. Geliştirici Konsol Mesajı ---
-    console.log("%c Merhaba Eren! 👋", "color:#4f46e5; font-size:20px; font-weight:bold;");
-    console.log("%c Kodları inceliyorsan doğru yerdesin.", "color:#64748b; font-size:12px;");
 });
