@@ -16,28 +16,26 @@
 
 ---
 
-## 🛠️ Kullanılan Teknolojiler
+## 🚀 Proje Hakkında
 
-Bu proje, modern web standartlarına uygun olarak ve **Build süreci gerektirmeyen (CDN)** bir yapı ile hazırlanmıştır.
+Bu repo, **[erenmente.com](https://www.erenmente.com)** adresinde yayınlanan kişisel web sitemin kaynak kodlarını içerir. Modern web teknolojileri kullanılarak geliştirilmiş ve global CDN üzerinden sunulmaktadır.
 
-| Kategori | Teknolojiler |
-| :--- | :--- |
-| **Yapı** | ![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white) |
-| **Stil & UI** | ![TailwindCSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white) ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white) |
-| **Etkileşim** | ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black) |
-| **Diğer** | ![FontAwesome](https://img.shields.io/badge/Google_Fonts-4285F4?style=for-the-badge&logo=googlefonts&logoColor=white) |
+### 🌟 Öne Çıkan Özellikler
+
+* **🌐 Özel Domain:** `erenmente.com` üzerinden doğrudan erişim.
+* **⚡ Vercel Hosting:** CI/CD süreçleri ve hosting Vercel altyapısı ile yönetilmektedir.
+* **🔒 SSL/TLS:** Otomatik HTTPS sertifikası ile güvenli bağlantı.
+* **📱 Responsive Tasarım:** Tüm cihazlarda kusursuz görünüm.
 
 ---
 
-## ✨ Proje Özellikleri
+## 🛠️ Teknoloji Yığını (Tech Stack)
 
-Kod yapısı incelendiğinde öne çıkan teknik özellikler:
-
-* **🎨 CDN Tabanlı Tailwind:** Node.js kurulumuna ihtiyaç duymadan, doğrudan tarayıcı üzerinde çalışan özelleştirilmiş Tailwind konfigürasyonu.
-* **🔄 3D Flip Animasyonları:** Projeler kısmında CSS `transform-style: preserve-3d` kullanılarak hazırlanan etkileşimli kart çevirme efektleri.
-* **📱 Tam Responsive:** Mobil menü entegrasyonu ve tüm ekran boyutlarına (Mobil, Tablet, Desktop) uyumlu tasarım.
-* **✨ Glassmorphism UI:** Navbar ve kartlarda kullanılan `backdrop-blur` efektleri ile modern cam görünümü.
-* **📜 Smooth Scroll:** Sayfa içi gezinmede yumuşak geçişler (`scroll-behavior: smooth`).
+| Kategori | Teknoloji | Kullanım Amacı |
+| :--- | :--- | :--- |
+| **Domain & DNS** | **erenmente.com** | Özel alan adı yönetimi |
+| **Hosting** | Vercel | Deployment ve Serverless Fonksiyonlar |
+| **Styling** | Tailwind CSS | Tasarım Sistemi |
 
 ---
 
