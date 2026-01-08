@@ -144,7 +144,7 @@ async function sendMessage() {
     scrollToBottom();
 
     try {
-        const response = await fetch('/sor', {
+        const response = await fetch('/firatasistan/sor', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ message: message, mode: currentMode })
