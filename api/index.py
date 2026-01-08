@@ -1,15 +1,27 @@
 from flask import Flask, render_template, request, jsonify
 from dotenv import load_dotenv
 from services import AIService
+import os
 
-# 1. AYARLARI YÜKLE
 # 1. AYARLARI YÜKLE
 load_dotenv()
-# Static path'i subfolder'a göre ayarla
-app = Flask(__name__, static_url_path='/firatasistan/static')
 
-# Servisi Başlat
-ai_service = AIService()
+# Klasör yollarını tam belirle (Vercel için kritik)
+base_dir = os.path.dirname(os.path.abspath(__file__))
+static_dir = os.path.join(base_dir, 'static')
+template_dir = os.path.join(base_dir, 'templates')
+
+app = Flask(__name__, 
+            static_url_path='/firatasistan/static',
+            static_folder=static_dir,
+            template_folder=template_dir)
+
+# Servisi Başlat (Hata alırsa patlamasın, loglasın)
+try:
+    ai_service = AIService()
+except Exception as e:
+    print(f"❌ Service Init Error: {e}")
+    ai_service = None
 
 @app.route('/')
 @app.route('/firatasistan')
