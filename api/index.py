@@ -1,5 +1,11 @@
 from flask import Flask, render_template, request, jsonify
 from dotenv import load_dotenv
+import os
+import sys
+
+# Vercel path fix: Add current directory to path so imports work
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+
 try:
     from services import AIService
 except Exception as e:

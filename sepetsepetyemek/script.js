@@ -1,3 +1,6 @@
+// Debug: Test if script loads
+// alert("Script Yüklendi! (v3)"); 
+
 class QRMenu {
     constructor() {
         this.menuVerisi = [];
