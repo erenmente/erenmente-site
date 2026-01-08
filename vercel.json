@@ -1,6 +1,14 @@
 {
     "rewrites": [
         {
+            "source": "/firatasistan",
+            "destination": "/api/index.py"
+        },
+        {
+            "source": "/firatasistan/",
+            "destination": "/api/index.py"
+        },
+        {
             "source": "/firatasistan/(.*)",
             "destination": "/api/index.py"
         }
