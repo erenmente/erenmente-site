@@ -1,0 +1,22 @@
+{
+    "rewrites": [
+        {
+            "source": "/firatasistan",
+            "destination": "/firatasistan/app.py"
+        },
+        {
+            "source": "/firatasistan/",
+            "destination": "/firatasistan/app.py"
+        },
+        {
+            "source": "/firatasistan/(.*)",
+            "destination": "/firatasistan/app.py"
+        }
+    ],
+    "functions": {
+        "firatasistan/app.py": {
+            "maxDuration": 10,
+            "memory": 1024
+        }
+    }
+}

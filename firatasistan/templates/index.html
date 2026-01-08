@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fırat Asistan | Tam Kontrol</title>
+
+    <!-- External Libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+    <aside class="sidebar" id="sidebar">
+        <div class="app-logo">
+            <i class="fas fa-robot"></i> Fırat Asistan
+        </div>
+
+        <button class="new-chat-btn">
+            <i class="fas fa-plus"></i> Yeni Sohbet
+        </button>
+
+        <div class="history-label">GEÇMİŞ SOHBETLER</div>
+        <div class="history-list" id="historyList">
+            <!-- History items will be populated here -->
+        </div>
+
+        <button class="action-btn download-btn" onclick="downloadChat()">
+            <i class="fas fa-download"></i> Sohbeti İndir
+        </button>
+
+        <button class="action-btn clear-all-btn" onclick="clearAllHistory()">
+            <i class="fas fa-trash-alt"></i> Tüm Geçmişi Sil
+        </button>
+    </aside>
+
+    <main class="main-content">
+        <button class="menu-toggle" id="menuToggle">
+            <i class="fas fa-bars"></i>
+        </button>
+
+        <div class="mode-selector">
+            <button class="mode-btn active-algo" id="btn-algo">
+                <i class="fas fa-code"></i> Algoritma
+            </button>
+            <button class="mode-btn" id="btn-bbg">
+                <i class="fas fa-microchip"></i> BBG
+            </button>
+        </div>
+
+        <div class="chat-box" id="chatBox">
+            <div class="message ai-message">
+                <div class="avatar ai">AI</div>
+                <div class="msg-content">
+                    Merhaba! Ben Fırat Asistan. Geçmiş sohbetlerini yönetebilirsin. Başlayalım mı?
+                </div>
+            </div>
+        </div>
+
+        <div class="input-area">
+            <div class="input-wrapper">
+                <input type="text" id="userInput" placeholder="Sorunu buraya yaz...">
+                <button class="send-btn"><i class="fas fa-paper-plane"></i></button>
+            </div>
+        </div>
+    </main>
+
+    <!-- Custom Script -->
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lezzet Durağı | QR Menü</title>
+
+    <!-- Google Fonts: Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg sticky-top glass-nav">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="javascript:void(0)" onclick="qrMenu.resetToAll()">
+                <i class="bi bi-fire text-primary-color"></i> Lezzet Durağı
+            </a>
+            <button class="btn btn-sm btn-outline-primary-color ms-auto" onclick="qrMenu.qrKodGoster()">
+                <i class="bi bi-qr-code"></i> QR Paylaş
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero-section text-center text-white d-flex align-items-center justify-content-center mb-5">
+        <div class="container position-relative z-2">
+            <h1 class="display-4 fw-bold mb-3">Lezzeti Keşfet</h1>
+            <p class="lead mb-4">En taze malzemelerle hazırlanan eşsiz tatlar.</p>
+            <div class="search-wrapper mx-auto">
+                <div class="input-group input-group-lg shadow-sm">
+                    <span class="input-group-text bg-white border-0 text-muted"><i class="bi bi-search"></i></span>
+                    <input type="text" id="search-bar" class="form-control border-0"
+                        placeholder="Ne yemek istersiniz? (Örn: Burger)">
+                </div>
+            </div>
+        </div>
+        <div class="hero-overlay"></div>
+    </header>
+
+    <div class="container mb-5">
+
+        <!-- Categories -->
+        <div class="btn-container d-flex overflow-auto pb-3 mb-4 gap-2 justify-content-lg-center" id="category-wrapper">
+            <!-- Buttons will be injected here -->
+        </div>
+
+        <div class="row g-4">
+            <!-- Menu Items -->
+            <div class="col-lg-8">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h4 class="fw-bold mb-0">Menü</h4>
+                    <span class="text-muted small" id="item-count"></span>
+                </div>
+                <div class="row row-cols-1 row-cols-md-2 g-4" id="menu-container">
+                    <!-- Menu items will be injected here -->
+                </div>
+            </div>
+
+            <!-- Cart Section (Desktop) -->
+            <div class="col-lg-4 d-none d-lg-block">
+                <div class="card border-0 shadow-sm sticky-lg-top" style="top: 90px; z-index: 100;">
+                    <div class="card-header bg-white border-0 pt-4 px-4">
+                        <h5 class="fw-bold mb-0"><i class="bi bi-basket"></i> Sepetim</h5>
+                    </div>
+                    <div class="card-body px-4">
+                        <ul id="sepet-listesi" class="list-group list-group-flush mb-3">
+                            <!-- Cart items will be injected here -->
+                            <li class="list-group-item text-center text-muted py-4">Sepetiniz boş</li>
+                        </ul>
+
+                        <div class="d-flex justify-content-between align-items-center mb-3 pt-3 border-top">
+                            <span class="text-muted">Toplam Tutar</span>
+                            <span class="fs-4 fw-bold text-primary-color" id="toplam-fiyat">0 ₺</span>
+                        </div>
+
+                        <button class="btn btn-primary-color w-100 py-3 rounded-3 fw-semibold shadow-sm"
+                            onclick="qrMenu.siparisiTamamla()">
+                            Siparişi Tamamla <i class="bi bi-arrow-right ms-2"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Mobile Cart Button -->
+    <div class="fixed-bottom p-3 d-lg-none" style="z-index: 1030;">
+        <button
+            class="btn btn-primary-color w-100 py-3 rounded-3 fw-semibold shadow-lg d-flex justify-content-between align-items-center"
+            type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileCartOffcanvas">
+            <span><i class="bi bi-basket me-2"></i>Sepetim</span>
+            <span class="badge bg-white text-primary-color rounded-pill" id="mobile-cart-count">0</span>
+        </button>
+    </div>
+
+    <!-- Mobile Cart Offcanvas -->
+    <div class="offcanvas offcanvas-bottom h-75 rounded-top-4" tabindex="-1" id="mobileCartOffcanvas">
+        <div class="offcanvas-header border-bottom">
+            <h5 class="offcanvas-title fw-bold"><i class="bi bi-basket me-2"></i>Sepetim</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+        </div>
+        <div class="offcanvas-body d-flex flex-column">
+            <ul id="mobile-sepet-listesi" class="list-group list-group-flush mb-auto overflow-auto">
+                <!-- Cart items will be injected here -->
+                <li class="list-group-item text-center text-muted py-4">Sepetiniz boş</li>
+            </ul>
+
+            <div class="border-top pt-3 mt-3 bg-white sticky-bottom">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <span class="text-muted">Toplam Tutar</span>
+                    <span class="fs-4 fw-bold text-primary-color" id="mobile-toplam-fiyat">0 ₺</span>
+                </div>
+                <button class="btn btn-primary-color w-100 py-3 rounded-3 fw-semibold shadow-sm"
+                    onclick="qrMenu.siparisiTamamla()">
+                    Siparişi Tamamla <i class="bi bi-arrow-right ms-2"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
