@@ -9,7 +9,10 @@ class QRMenu {
 
     async init() {
         try {
-            const response = await fetch("data.json");
+            // Use absolute path to avoid relative path issues
+            const response = await fetch("/sepetsepetyemek/data.json");
+            if (!response.ok) throw new Error(`HTTP Hata: ${response.status}`);
+
             this.menuVerisi = await response.json();
 
             this.renderMenu(this.menuVerisi);
@@ -18,11 +21,14 @@ class QRMenu {
             this.setupEventListeners();
         } catch (error) {
             console.error("Veri yüklenirken hata oluştu:", error);
-            Swal.fire({
-                icon: 'error',
-                title: 'Hata',
-                text: `Veri yüklenemedi! Hata: ${error.message}`
-            });
+            const errMsg = `Veri yüklenemedi! Hata: ${error.message}`;
+
+            if (typeof Swal !== 'undefined') {
+                Swal.fire({ icon: 'error', title: 'Hata', text: errMsg });
+            } else {
+                alert(errMsg);
+                document.body.innerHTML = `<div style="color:red; text-align:center; padding:20px;">${errMsg}</div>`;
+            }
         }
     }
 

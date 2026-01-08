@@ -3,11 +3,12 @@ from dotenv import load_dotenv
 try:
     from services import AIService
 except Exception as e:
-    print(f"❌ Import Error: {e}")
+    err_msg = str(e)
+    print(f"❌ Import Error: {err_msg}")
     # Fallback class to prevent crash
     class AIService:
         def __init__(self): pass
-        def get_response(self, *args): return f"Sistem Başlatma Hatası: {e}"
+        def get_response(self, *args): return f"Sistem Başlatma Hatası: {err_msg}"
 import os
 
 # 1. AYARLARI YÜKLE
