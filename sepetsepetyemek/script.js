@@ -21,7 +21,7 @@ class QRMenu {
             Swal.fire({
                 icon: 'error',
                 title: 'Hata',
-                text: 'Menü verileri yüklenemedi!'
+                text: `Veri yüklenemedi! Hata: ${error.message}`
             });
         }
     }

@@ -53,7 +53,8 @@ def sor():
 
     except Exception as e:
         print(f"❌ Sunucu Hatası: {str(e)}")
-        return jsonify({'response': "Sunucu tarafında bir hata oluştu."})
+        # Hata detayını kullanıcıya göster ki sebebi anlayalım
+        return jsonify({'response': f"DEBUG HATASI: {str(e)}"})
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=True)
