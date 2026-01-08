@@ -1,6 +1,13 @@
 from flask import Flask, render_template, request, jsonify
 from dotenv import load_dotenv
-from services import AIService
+try:
+    from services import AIService
+except Exception as e:
+    print(f"❌ Import Error: {e}")
+    # Fallback class to prevent crash
+    class AIService:
+        def __init__(self): pass
+        def get_response(self, *args): return f"Sistem Başlatma Hatası: {e}"
 import os
 
 # 1. AYARLARI YÜKLE
