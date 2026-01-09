@@ -131,52 +131,86 @@ async function sendMessage() {
     appendMessage('user', message);
     saveToHistory(message, 'user');
 
-    // Loading Indicator
-    const loadingId = 'loading-' + Date.now();
-    const loadingHTML = `
-        <div class="message ai-message" id="${loadingId}">
-            <div class="avatar ai">...</div>
-            <div class="msg-content">
-                <i class="fas fa-circle-notch fa-spin"></i> Düşünüyor...
+    // Create empty AI message container immediately
+    const msgId = 'msg-' + Date.now();
+    const msgHTML = `
+        <div class="message ai-message">
+            <div class="avatar ai">AI</div>
+            <div class="msg-content" id="${msgId}">
+                <i class="fas fa-circle-notch fa-spin"></i>
             </div>
-        </div>`;
-    chatBox.insertAdjacentHTML('beforeend', loadingHTML);
+        </div>
+    `;
+    chatBox.insertAdjacentHTML('beforeend', msgHTML);
     scrollToBottom();
 
+    const msgContentDiv = document.getElementById(msgId);
+    let fullResponseText = "";
+
     try {
+        // Prepare context history
+        const currentChat = chats.find(c => c.id === currentChatId);
+        const history = currentChat ? currentChat.messages.map(m => ({
+            role: m.sender === 'user' ? 'user' : 'assistant',
+            content: m.text
+        })) : [];
+
+        // LIMIT HISTORY: Send only last 10 messages to avoid token limits
+        const recentHistory = history.slice(-10);
+
         const response = await fetch('/firatasistan/sor', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ message: message, mode: currentMode })
+            body: JSON.stringify({
+                message: message,
+                mode: currentMode,
+                history: recentHistory
+            })
         });
 
-        const data = await response.json();
+        if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
 
-        // Remove loading
-        const loadingElement = document.getElementById(loadingId);
-        if (loadingElement) loadingElement.remove();
+        // STREAMING LOGIC
+        const reader = response.body.getReader();
+        const decoder = new TextDecoder();
+        let isFirstChunk = true;
 
-        // Create empty message container
-        const msgId = 'msg-' + Date.now();
-        const msgHTML = `
-            <div class="message ai-message">
-                <div class="avatar ai">AI</div>
-                <div class="msg-content" id="${msgId}"></div>
-            </div>
-        `;
-        chatBox.insertAdjacentHTML('beforeend', msgHTML);
+        while (true) {
+            const { done, value } = await reader.read();
+            if (done) break;
 
-        // Type out the response
-        await typeText(document.getElementById(msgId), data.response);
+            const chunk = decoder.decode(value, { stream: true });
 
-        saveToHistory(data.response, 'ai');
+            if (isFirstChunk) {
+                msgContentDiv.innerHTML = ""; // Clear loading spinner
+                isFirstChunk = false;
+            }
+
+            fullResponseText += chunk;
+
+            // Progressive Rendering
+            // Parse Markdown periodically for smoothness
+            msgContentDiv.innerHTML = marked.parse(fullResponseText);
+
+            // Highlight code blocks on fly (optional, might be heavy)
+            msgContentDiv.querySelectorAll('pre code').forEach((block) => {
+                hljs.highlightElement(block);
+            });
+
+            scrollToBottom();
+        }
+
+        // Finalize
+        saveToHistory(fullResponseText, 'ai');
+
+        // Add copy buttons after full render
+        msgContentDiv.querySelectorAll('pre code').forEach((block) => {
+            addCopyButton(block);
+        });
 
     } catch (error) {
         console.error("Chat Error:", error);
-        const loadingElement = document.getElementById(loadingId);
-        if (loadingElement) loadingElement.remove();
-
-        appendMessage('ai', "⚠️ Bir hata oluştu. Lütfen tekrar deneyin.");
+        msgContentDiv.innerHTML = "⚠️ Bir hata oluştu. Lütfen tekrar deneyin.";
     } finally {
         inputField.disabled = false;
         sendBtn.disabled = false;

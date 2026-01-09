@@ -1,5 +1,31 @@
 /* Modern Reset & Variables */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap');
+/* Back to Portfolio Button */
+.btn-back-portfolio {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    /* Position right for this layout */
+    z-index: 9999;
+    background: rgba(45, 52, 54, 0.9);
+    padding: 10px 20px;
+    border-radius: 50px;
+    text-decoration: none;
+    color: #fff;
+    font-weight: 500;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.btn-back-portfolio:hover {
+    transform: translateX(-5px);
+    background: #6c5ce7;
+    color: white;
+}
+
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css');
 
 :root {

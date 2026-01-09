@@ -1,110 +1,89 @@
-<h1 align="center">👨‍💻 Eren Mente - Kişisel Portfolyo</h1>
+# 🎓 Eren Mente - Portfolio Monorepo
 
-<p align="center">
-  <b>Fırat Üniversitesi Yazılım Mühendisliği öğrencisi olarak projelerimi, yeteneklerimi ve deneyimlerimi sergilediğim modern, responsive ve interaktif kişisel web sitem.</b>
-</p>
+Welcome to my personal portfolio repository! This project serves as a central hub showcasing my web development skills, featuring a main portfolio site and two distinct sub-projects hosted under the same domain.
 
-<p align="center">
-  <a href="https://www.erenmente.com">
-    <img src="https://img.shields.io/website?down_color=red&down_message=offline&label=Durum&style=for-the-badge&up_color=success&up_message=online&url=https%3A%2F%2Ferenmente.com" alt="Website Status" />
-  </a>
-  <a href="https://vercel.com">
-    <img src="https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white" alt="Vercel" />
-  </a>
-  <a href="https://tailwindcss.com">
-    <img src="https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white" alt="Tailwind CSS" />
-  </a>
-</p>
-
-<p align="center">
-  <a href="https://www.erenmente.com"><strong>➥ Canlı Siteyi Ziyaret Et: www.erenmente.com</strong> 🚀</a>
-</p>
-
-<br />
-
-## 🚀 Proje Hakkında
-
-Bu repo, **[erenmente.com](https://www.erenmente.com)** adresinde yayınlanan kişisel web sitemin kaynak kodlarını içerir. Modern web teknolojileri kullanılarak geliştirilmiş, tüm cihazlarla uyumlu ve global CDN üzerinden sunulmaktadır.
-
-### 🌟 Öne Çıkan Özellikler
-
-* **🌐 Özel Domain:** `erenmente.com` üzerinden doğrudan ve akılda kalıcı erişim.
-* **⚡ Vercel Hosting:** CI/CD süreçleri ve hosting işlemleri Vercel altyapısı ile yönetilmektedir.
-* **🔒 SSL/TLS Güvenliği:** Otomatik HTTPS sertifikası ile şifrelenmiş güvenli bağlantı.
-* **📱 Responsive Tasarım:** Mobil, tablet ve masaüstü cihazlarda kusursuz görünüm.
+**Live Site:** [erenmente.com](https://erenmente.com)
 
 ---
 
-## 🛠️ Teknoloji Yığını (Tech Stack)
+## 📂 Project Structure
 
-Proje geliştirilirken kullanılan teknolojiler ve araçlar:
+This repository is structured as a monorepo containing three main components:
 
-| Kategori | Teknoloji | Kullanım Amacı |
-| :--- | :--- | :--- |
-| **Frontend** | HTML5 / JavaScript | İskelet yapı ve etkileşimler |
-| **Styling** | Tailwind CSS | Hızlı ve modern stillendirme |
-| **Hosting** | Vercel | Yayına alma ve DNS yönetimi |
-| **Domain** | Google Domains | Alan adı yapılandırması |
-
----
-
-## 📂 Portfolyoda Sergilenen Projeler
-
-Web sitesi içerisinde detaylarına yer verilen ve GitHub bağlantıları bulunan ana projelerim:
-
-### 1. 🍽️ Digital Menu
-Restoranlar için geliştirilmiş, karekod tabanlı modern menü sistemi.
-* **Teknolojiler:** JavaScript, Bootstrap, LocalStorage
-* **Özellikler:** Dinamik sepet sistemi, kategori filtreleme, QR kod oluşturma.
-
-### 2. 🎓 Fırat Assistant
-Üniversite öğrencileri için yapay zeka destekli akademik asistan.
-* **Teknolojiler:** Python, Flask, Groq API (AI)
-* **Özellikler:** Yapay zeka tabanlı ders mentoru, %99 uptime, Failover sistemi.
+| Project | Path | Description | Tech Stack |
+|---------|------|-------------|------------|
+| **Main Portfolio** | `/` | My personal landing page with skills, and contact info. | HTML5, Tailwind CSS |
+| **Fırat Assistant** | `/firatasistan` | AI-powered lecture assistant for students. | Python (Flask), Groq API, JS |
+| **Digital Menu** | `/sepetsepetyemek` | Interactive QR menu system for restaurants. | HTML, CSS, Vanilla JS |
 
 ---
 
-## ⚙️ Kurulum ve Çalıştırma
+## 🚀 1. Main Portfolio (Root)
+A modern, responsive personal website designed to showcase my journey as a Software Engineering student.
 
-Bu proje statik bir yapıdadır, dolayısıyla karmaşık `npm install` süreçleri gerektirmez.
+### Features
+- **Responsive Design:** Built with Tailwind CSS for mobile-first responsiveness.
+- **Dark Mode:** Fully supported dark/light theme switching.
+- **Project Showcase:** 3D card effects to highlight featured projects.
+- **Project Showcase:** 3D card effects to highlight featured projects.
 
-1. **Projeyi Klonlayın:**
+---
+
+## 🤖 2. Fırat Assistant (`/firatasistan`)
+*Path: `/api` (Backend), `/api/templates` (Frontend)*
+
+An AI chatbot designed to assist students with algorithm problems and computer science concepts.
+
+### Key Features
+- **Dual Mode:** 
+    - `Algo Mode`: Solves coding problems.
+    - `BBG Mode`: Explains CS concepts.
+- **Streaming Responses:** Real-time text generation for a natural chat experience.
+- **Context Memory:** Remembers previous messages in the conversation.
+- **Code Highlighting:** Auto-detects and highlights code blocks with a "Copy" button.
+- **Tech Stack:** Serverless Python (Flask) on Vercel, Groq LLaMA API.
+
+---
+
+## 🍽️ 3. Digital Menu (`/sepetsepetyemek`)
+*Path: `/sepetsepetyemek`*
+
+A frontend-heavy simulation of a digital restaurant menu system, perfect for QR code integration.
+
+### Key Features
+- **Dynamic Cart:** Add/remove items with real-time total calculation.
+- **Search & Filter:** Instant filtering by category or search term.
+- **QR Code Generation:** Generates a unique QR code for the menu link.
+- **Offline Capable:** Uses `localStorage` to persist simulated cart data.
+- **Tech Stack:** Vanilla JavaScript, Bootstrap 5, SweetAlert2.
+
+---
+
+## 🛠️ Setup & Deployment
+
+### Local Development
+1. Clone the repository:
    ```bash
-   git clone [https://github.com/erenmente/erenmente-site.git](https://github.com/erenmente/erenmente-site.git)
-2.  **Klasöre Gidin:**
-    ```bash
-    cd erenmente-site
-    ```
+   git clone https://github.com/erenmente/erenmente-com.git
+   ```
+2. Open `index.html` in your browser or use a live server.
+3. For Python backend (`api/index.py`), install dependencies:
+   ```bash
+   pip install -r api/requirements.txt
+   python api/index.py
+   ```
 
-3.  **Çalıştırın:**
-    * `index.html` dosyasına çift tıklayarak tarayıcınızda açmanız yeterlidir.
-    * Veya VS Code kullanıyorsanız "Live Server" eklentisi ile anlık değişiklikleri görerek çalıştırabilirsiniz.
-
----
-
-## 📂 Portfolyoda Sergilenen Projeler
-
-Web sitesi içerisinde detaylarına yer verilen ve GitHub bağlantıları bulunan projeler:
-
-### 1. 🍽️ Digital Menu
-* **Teknolojiler:** JavaScript, Bootstrap, LocalStorage
-* **Özellikler:** Dinamik sepet sistemi, kategori filtreleme, QR kod oluşturma.
-
-### 2. 🎓 Fırat Assistant
-* **Teknolojiler:** Python, Flask, Groq API (AI)
-* **Özellikler:** Yapay zeka tabanlı ders mentoru, %99 uptime, Failover sistemi.
+### Vercel Deployment configuration
+The project uses `vercel.json` to handle routing for the Python backend and static files:
+- `/firatasistan/*` -> Rewrites to Flask API.
+- `/sepetsepetyemek/*` -> Serves static menu files.
 
 ---
 
-## 📬 İletişim
+## 👤 Author
+**Muhammet Eren Mente**  
+*Software Engineering Student @ Fırat University*
 
-Benimle iletişime geçmek için aşağıdaki kanalları kullanabilirsiniz:
-
-* **LinkedIn:** [Eren Mente](https://www.linkedin.com/in/erenmente/)
-* **GitHub:** [@erenmente](https://github.com/erenmente)
-* **E-posta:** muhammeterenmente@gmail.com
-
----
-<p align="center">
-  Bu proje <b>Google Gemini</b> yardımıyla tasarlanmıştır.
-</p>
+- [LinkedIn](https://www.linkedin.com/in/erenmente/)
+- [GitHub](https://github.com/erenmente)
+- [Email](mailto:muhammeterenmente@gmail.com)

@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request, jsonify, Response, stream_with_context
 from dotenv import load_dotenv
 import os
 
@@ -55,25 +55,36 @@ class AIService:
             except Exception as e:
                 print(f"❌ Groq Client Init Error: {e}")
 
-    def get_response(self, user_input, mode):
+    def get_response(self, user_input, mode, history=None):
         if not self.client:
-            return f"Sunucu Hatası: API Anahtarı eksik veya kütüphane yüklenemedi. (Key: {'VAR' if self.api_key else 'YOK'}, Lib: {'VAR' if Groq else 'YOK'})"
+            yield f"Sunucu Hatası: API Anahtarı eksik."
+            return
 
         system_content = ALGO_PROMPT if mode == 'algo' else BBG_PROMPT
+        
+        # Build messages list with history
+        messages = [{"role": "system", "content": system_content}]
+        
+        if history:
+            messages.extend(history)
+            
+        messages.append({"role": "user", "content": user_input})
 
         try:
             completion = self.client.chat.completions.create(
-                messages=[
-                    {"role": "system", "content": system_content},
-                    {"role": "user", "content": user_input}
-                ],
+                messages=messages,
                 model="llama-3.3-70b-versatile",
                 temperature=0.7,
+                stream=True
             )
-            return completion.choices[0].message.content
+            
+            for chunk in completion:
+                content = chunk.choices[0].delta.content
+                if content:
+                    yield content
 
         except Exception as e:
-            return f"API Hatası: {str(e)}"
+            yield f"API Hatası: {str(e)}"
 
 # Initialize Service safely
 ai_service = AIService()
@@ -97,12 +108,13 @@ def sor():
             
         user_input = data.get('message')
         mode = data.get('mode', 'algo')
+        history = data.get('history', []) # Get history from frontend
 
         if not user_input:
             return jsonify({'response': "Boş mesaj."})
 
-        response = ai_service.get_response(user_input, mode)
-        return jsonify({'response': response})
+        # Return streaming response
+        return Response(stream_with_context(ai_service.get_response(user_input, mode, history)), content_type='text/plain')
 
     except Exception as e:
         return jsonify({'response': f"Sunucu İşlem Hatası: {str(e)}"})

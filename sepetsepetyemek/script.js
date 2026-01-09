@@ -1,5 +1,6 @@
 // Debug: Test if script loads
-alert("PAGE LOADED - SCRIPT RUNNING");
+// Debug: Test if script loads
+// alert("PAGE LOADED - SCRIPT RUNNING");
 
 class QRMenu {
     constructor() {
@@ -241,8 +242,6 @@ class QRMenu {
 
         const toplamTutarEl = document.getElementById("toplam-fiyat");
         const mobileToplamTutarEl = document.getElementById("mobile-toplam-fiyat");
-
-        // Use whichever is visible or available, fallback to 0
         const toplamTutar = toplamTutarEl ? toplamTutarEl.innerText : (mobileToplamTutarEl ? mobileToplamTutarEl.innerText : "0 ₺");
 
         Swal.fire({
