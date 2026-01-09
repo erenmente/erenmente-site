@@ -12,5 +12,12 @@
             "source": "/firatasistan/(.*)",
             "destination": "/api/index.py"
         }
+    ],
+    "redirects": [
+        {
+            "source": "/sepetsepetyemek",
+            "destination": "/sepetsepetyemek/",
+            "permanent": true
+        }
     ]
 }
