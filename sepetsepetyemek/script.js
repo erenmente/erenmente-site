@@ -1,5 +1,5 @@
 // Debug: Test if script loads
-// alert("Script Yüklendi! (v3)"); 
+alert("PAGE LOADED - SCRIPT RUNNING");
 
 class QRMenu {
     constructor() {
