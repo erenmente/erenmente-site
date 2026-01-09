@@ -10,19 +10,24 @@
     <meta property="og:description"
         content="Yazılım Mühendisliği öğrencisi portfolyosu. Java, Python ve Modern Web Teknolojileri.">
 
-    <meta property="og:url" content="https://erenmente.com">
+    <meta property="og:url" content="https://erenmente-com">
     <meta property="og:type" content="website">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="js/tailwind.config.js"></script>
     <link rel="stylesheet" href="css/style.css">
 
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@500;700;900&family=Caveat:wght@600;700&display=swap"
         rel="stylesheet">
 
 </head>
 
 <body
-    class="bg-brand-bg text-brand-text antialiased selection:bg-brand-primary selection:text-white dark:bg-slate-900 dark:text-slate-100">
+    class="bg-brand-bg text-brand-text antialiased selection:bg-brand-primary selection:text-white dark:bg-slate-900 dark:text-slate-100 relative">
+
+    <!-- Background Canvas -->
+    <canvas id="bg-canvas"
+        class="fixed top-0 left-0 w-full h-full -z-10 pointer-events-none opacity-60 dark:opacity-40"></canvas>
 
 
 
@@ -52,20 +57,68 @@
                         <a href="#contact"
                             class="bg-brand-primary hover:bg-brand-hover text-white px-4 py-2 rounded-md text-sm font-medium transition-all shadow-md shadow-indigo-500/20">İletişim</a>
 
-                        <!-- Dark Mode Toggle -->
-                        <button id="theme-toggle" type="button"
-                            class="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5 ml-4">
-                            <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5" fill="currentColor"
-                                viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
-                            </svg>
-                            <svg id="theme-toggle-light-icon" class="hidden w-5 h-5" fill="currentColor"
-                                viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
-                                    fill-rule="evenodd" clip-rule="evenodd"></path>
-                            </svg>
-                        </button>
+                        <!-- Dark Mode Dropdown -->
+                        <div class="relative ml-4">
+                            <button id="theme-toggle" type="button"
+                                class="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5">
+                                <svg id="icon-display-dark" class="hidden w-5 h-5" fill="currentColor"
+                                    viewBox="0 0 20 20">
+                                    <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+                                </svg>
+                                <svg id="icon-display-light" class="hidden w-5 h-5" fill="currentColor"
+                                    viewBox="0 0 20 20">
+                                    <path
+                                        d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
+                                        fill-rule="evenodd" clip-rule="evenodd"></path>
+                                </svg>
+                                <svg id="icon-display-system" class="hidden w-5 h-5" fill="currentColor"
+                                    viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd"
+                                        d="M3 5a2 2 0 012-2h10a2 2 0 012 2v8a2 2 0 01-2 2h-2.22l.123.489.804.804A1 1 0 0113 18H7a1 1 0 01-.707-1.707l.804-.804L7.22 15H5a2 2 0 01-2-2V5zm2 0v8h10V5H5z"
+                                        clip-rule="evenodd"></path>
+                                </svg>
+                            </button>
+
+                            <!-- Dropdown Menu -->
+                            <div id="theme-dropdown"
+                                class="hidden absolute right-0 mt-2 w-36 bg-white dark:bg-slate-800 rounded-lg shadow-xl border border-gray-100 dark:border-slate-700 z-50 overflow-hidden">
+                                <ul class="text-sm text-gray-700 dark:text-gray-200">
+                                    <li>
+                                        <button type="button" onclick="selectTheme('light')"
+                                            class="flex items-center w-full px-4 py-3 hover:bg-gray-100 dark:hover:bg-slate-700 transition-colors">
+                                            <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                                <path
+                                                    d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
+                                                    fill-rule="evenodd" clip-rule="evenodd"></path>
+                                            </svg>
+                                            Aydınlık
+                                        </button>
+                                    </li>
+                                    <li>
+                                        <button type="button" onclick="selectTheme('dark')"
+                                            class="flex items-center w-full px-4 py-3 hover:bg-gray-100 dark:hover:bg-slate-700 transition-colors">
+                                            <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                                <path
+                                                    d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z">
+                                                </path>
+                                            </svg>
+                                            Karanlık
+                                        </button>
+                                    </li>
+                                    <li>
+                                        <button type="button" onclick="selectTheme('system')"
+                                            class="flex items-center w-full px-4 py-3 hover:bg-gray-100 dark:hover:bg-slate-700 transition-colors">
+                                            <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                                <path fill-rule="evenodd"
+                                                    d="M3 5a2 2 0 012-2h10a2 2 0 012 2v8a2 2 0 01-2 2h-2.22l.123.489.804.804A1 1 0 0113 18H7a1 1 0 01-.707-1.707l.804-.804L7.22 15H5a2 2 0 01-2-2V5zm2 0v8h10V5H5z"
+                                                    clip-rule="evenodd"></path>
+                                            </svg>
+                                            Sistem
+                                        </button>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -108,10 +161,12 @@
                 class="inline-block px-3 py-1 mb-6 text-xs font-semibold tracking-wider text-brand-primary uppercase bg-indigo-50 dark:bg-slate-800 dark:border-slate-700 rounded-full border border-indigo-100">
                 <span id="typing-text"></span><span class="animate-pulse">|</span>
             </div>
-            <h1 class="text-5xl md:text-7xl font-bold text-slate-900 dark:text-white mb-6 tracking-tight">
+            <h1 id="hero-name"
+                class="text-5xl md:text-7xl font-bold text-slate-900 dark:text-white mb-6 tracking-tight cursor-default relative z-10">
                 Eren Mente
             </h1>
-            <p class="text-xl text-brand-muted dark:text-slate-400 font-light mb-8">
+            <p id="uni-name"
+                class="text-xl text-brand-muted dark:text-slate-400 font-light mb-8 cursor-default w-fit mx-auto relative z-10">
                 Fırat Üniversitesi
             </p>
             <p class="max-w-2xl mx-auto text-slate-600 dark:text-slate-400 mb-10 leading-relaxed text-base">
@@ -138,7 +193,7 @@
     </header>
 
     <section id="skills"
-        class="py-20 bg-brand-surface dark:bg-slate-900 border-y border-brand-border dark:border-slate-800">
+        class="py-20 bg-white/60 dark:bg-slate-900/60 backdrop-blur-sm border-y border-brand-border dark:border-slate-800">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 class="text-2xl font-bold text-slate-900 dark:text-white mb-10 flex items-center">
                 <span class="w-2 h-8 bg-brand-primary rounded-sm mr-3"></span>
@@ -146,25 +201,25 @@
             </h2>
             <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
                 <div
-                    class="bg-white dark:bg-slate-800 p-5 rounded-lg border border-brand-border dark:border-slate-700 hover:border-brand-primary hover:shadow-md transition-all group">
+                    class="bg-white/80 dark:bg-slate-800/80 p-5 rounded-lg border border-brand-border dark:border-slate-700 hover:border-brand-primary hover:shadow-md transition-all group backdrop-blur-md">
                     <h3 class="text-lg font-semibold text-slate-800 dark:text-white group-hover:text-brand-primary">Java
                     </h3>
                     <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">OOP, Data Structures</p>
                 </div>
                 <div
-                    class="bg-white dark:bg-slate-800 p-5 rounded-lg border border-brand-border dark:border-slate-700 hover:border-brand-primary hover:shadow-md transition-all group">
+                    class="bg-white/80 dark:bg-slate-800/80 p-5 rounded-lg border border-brand-border dark:border-slate-700 hover:border-brand-primary hover:shadow-md transition-all group backdrop-blur-md">
                     <h3 class="text-lg font-semibold text-slate-800 dark:text-white group-hover:text-brand-primary">
                         Python</h3>
                     <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Scripting, Automation</p>
                 </div>
                 <div
-                    class="bg-white dark:bg-slate-800 p-5 rounded-lg border border-brand-border dark:border-slate-700 hover:border-brand-primary hover:shadow-md transition-all group">
+                    class="bg-white/80 dark:bg-slate-800/80 p-5 rounded-lg border border-brand-border dark:border-slate-700 hover:border-brand-primary hover:shadow-md transition-all group backdrop-blur-md">
                     <h3 class="text-lg font-semibold text-slate-800 dark:text-white group-hover:text-brand-primary">
                         Backend Basics</h3>
                     <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">SQL, API Logic</p>
                 </div>
                 <div
-                    class="bg-white dark:bg-slate-800 p-5 rounded-lg border border-brand-border dark:border-slate-700 hover:border-brand-primary hover:shadow-md transition-all group">
+                    class="bg-white/80 dark:bg-slate-800/80 p-5 rounded-lg border border-brand-border dark:border-slate-700 hover:border-brand-primary hover:shadow-md transition-all group backdrop-blur-md">
                     <h3 class="text-lg font-semibold text-slate-800 dark:text-white group-hover:text-brand-primary">
                         Tools</h3>
                     <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Git, Linux, VS Code</p>
@@ -174,7 +229,7 @@
     </section>
 
     <section id="experience"
-        class="py-20 bg-white dark:bg-slate-900 overflow-hidden border-b border-brand-border dark:border-slate-800">
+        class="py-20 bg-transparent overflow-hidden border-b border-brand-border dark:border-slate-800">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 class="text-2xl font-bold text-slate-900 dark:text-white mb-16 flex items-center">
                 <span class="w-2 h-8 bg-brand-primary rounded-sm mr-3"></span>
@@ -204,10 +259,11 @@
                         <span
                             class="inline-block px-3 py-1 mb-2 text-xs font-semibold tracking-wider text-brand-primary uppercase bg-indigo-50 dark:bg-slate-800 rounded-full border border-indigo-100 dark:border-slate-700">2025
                             - Günümüz</span>
-                        <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-1">Fırat Üniversitesi</h3>
+                        <h3 id="exp-firat" class="text-xl font-bold text-slate-900 dark:text-white mb-1 cursor-pointer">
+                            Fırat Üniversitesi</h3>
                         <p class="text-base text-brand-primary font-medium mb-2">Yazılım Mühendisliği</p>
                         <p
-                            class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed shadow-sm p-3 bg-slate-50 dark:bg-slate-800 rounded-lg border border-slate-100 dark:border-slate-700">
+                            class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed shadow-sm p-3 bg-white/70 dark:bg-slate-800/80 backdrop-blur-sm rounded-lg border border-slate-100 dark:border-slate-700">
                             Mühendislik temelleri, algoritma analizi ve nesne tabanlı programlama üzerine akademik
                             eğitim.
                         </p>
@@ -229,11 +285,13 @@
                         <span
                             class="inline-block px-3 py-1 mb-2 text-xs font-semibold tracking-wider text-slate-500 uppercase bg-slate-100 dark:bg-slate-800 rounded-full border border-slate-200 dark:border-slate-600">2020
                             - 2024</span>
-                        <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-1">Borusan Asım Kocabıyık M.T.A.L
+                        <h3 id="exp-borusan"
+                            class="text-xl font-bold text-slate-900 dark:text-white mb-1 cursor-pointer">Borusan Asım
+                            Kocabıyık M.T.A.L
                         </h3>
                         <p class="text-base text-brand-primary font-medium mb-2">Bilişim Teknolojileri</p>
                         <p
-                            class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed shadow-sm p-3 bg-slate-50 dark:bg-slate-800 rounded-lg border border-slate-100 dark:border-slate-700">
+                            class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed shadow-sm p-3 bg-white/70 dark:bg-slate-800/80 backdrop-blur-sm rounded-lg border border-slate-100 dark:border-slate-700">
                             Web Programlama, Veritabanı Yönetimi ve Temel Yazılım eğitimi.
                         </p>
                     </div>
@@ -243,7 +301,7 @@
         </div>
     </section>
 
-    <section id="projects" class="py-20 bg-white dark:bg-slate-900">
+    <section id="projects" class="py-20 bg-white/60 dark:bg-slate-900/60 backdrop-blur-sm">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 class="text-2xl font-bold text-slate-900 dark:text-white mb-10 flex items-center">
                 <span class="w-2 h-8 bg-brand-primary rounded-sm mr-3"></span>
@@ -363,7 +421,7 @@
     </section>
 
     <section id="contact"
-        class="py-24 bg-brand-surface dark:bg-slate-900 border-t border-brand-border dark:border-slate-800">
+        class="py-24 bg-brand-surface/60 dark:bg-slate-900/60 backdrop-blur-sm border-t border-brand-border dark:border-slate-800">
         <div class="max-w-3xl mx-auto px-4 text-center">
             <h2 class="text-3xl font-bold text-slate-900 dark:text-white mb-6">İletişime Geçin</h2>
             <p class="text-slate-600 dark:text-slate-400 mb-10 text-lg">
@@ -392,7 +450,8 @@
         </div>
     </section>
 
-    <footer class="bg-white dark:bg-slate-900 border-t border-brand-border dark:border-slate-800 py-8">
+    <footer
+        class="bg-white/60 dark:bg-slate-900/60 backdrop-blur-sm border-t border-brand-border dark:border-slate-800 py-8">
         <div class="max-w-6xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-4">
             <p class="text-slate-500 dark:text-slate-400 text-sm">&copy; <span id="year">2025</span> Eren Mente.</p>
             <div class="flex space-x-6">
@@ -417,6 +476,102 @@
         </div>
     </footer>
 
+    <!-- History / Time Travel Button -->
+    <!-- History / Time Travel Button -->
+    <button onclick="toggleModal(true)" type="button"
+        class="fixed bottom-8 left-8 bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 p-3 rounded-full shadow-lg hover:scale-110 transition-all duration-300 z-50 border border-slate-200 dark:border-slate-700 group tooltip-container">
+        <span
+            class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 text-xs text-white bg-slate-800 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">Zaman
+            Makinesi</span>
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+    </button>
+
+    <!-- Version Archive Modal (Time Machine) -->
+    <div id="version-modal" class="fixed inset-0 z-[100] hidden" aria-labelledby="modal-title" role="dialog"
+        aria-modal="true">
+        <!-- Backdrop with Tunnel Effect -->
+        <div class="fixed inset-0 bg-slate-900/90 backdrop-blur-md transition-opacity opacity-0" id="modal-backdrop">
+            <!-- Radial Gradient for "Portal" feel -->
+            <div
+                class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-indigo-500/20 via-slate-900/50 to-slate-950 pointer-events-none">
+            </div>
+        </div>
+
+        <div class="fixed inset-0 z-10 overflow-y-auto">
+            <div class="flex min-h-full items-center justify-center p-4 text-center">
+                <div class="relative transform transition-all opacity-0 scale-95 duration-500 ease-out max-w-5xl w-full"
+                    id="modal-panel">
+
+                    <!-- Close Button -->
+                    <button type="button" onclick="toggleModal(false)"
+                        class="absolute -top-12 right-0 text-white/50 hover:text-white transition-colors">
+                        <span class="sr-only">Kapat</span>
+                        <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+
+                    <!-- Title -->
+                    <h3 class="text-4xl md:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-teal-200 to-emerald-400 mb-12 drop-shadow-2xl font-heading tracking-tight"
+                        id="modal-title">
+                        Farklı bir zaman mı arıyorsunuz? <br>
+                        <span class="text-white/90 text-2xl md:text-3xl font-light mt-2 block">Zamanda geriye
+                            gidin...</span>
+                    </h3>
+
+                    <!-- Cards Grid -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 px-4 md:px-12 perspective-1000">
+
+                        <!-- V2.0 (Current) -->
+                        <div
+                            class="group relative aspect-video rounded-2xl overflow-hidden shadow-2xl ring-1 ring-white/10 bg-slate-800 transform hover:scale-105 transition-all duration-500 hover:shadow-brand-primary/50 cursor-default">
+                            <img src="img/preview-v2.png" alt="v2.0 Partikül Çağı"
+                                class="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-500">
+                            <div
+                                class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/40 to-transparent">
+                            </div>
+
+                            <div class="absolute bottom-0 left-0 p-8 text-left">
+                                <span
+                                    class="inline-block px-3 py-1 mb-3 text-xs font-bold text-emerald-300 bg-emerald-900/50 rounded-full border border-emerald-500/30 backdrop-blur-sm">Şu
+                                    anki Versiyon</span>
+                                <h4 class="text-2xl font-bold text-white mb-2 font-heading">v2.0 Partikül Çağı</h4>
+                                <p class="text-sm text-slate-300 max-w-sm">İnteraktif parçacık sistemi, modern tipografi
+                                    ve glassmorphism tasarımı.</p>
+                            </div>
+                        </div>
+
+                        <!-- V1.0 -->
+                        <a href="v1.html"
+                            class="group relative aspect-video rounded-2xl overflow-hidden shadow-2xl ring-1 ring-white/10 bg-slate-800 transform hover:scale-105 transition-all duration-500 hover:shadow-indigo-500/50 block">
+                            <img src="img/preview-v1.png" alt="v1.0 Başlangıç"
+                                class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-opacity duration-500">
+                            <div
+                                class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/40 to-transparent">
+                            </div>
+
+                            <div class="absolute bottom-0 left-0 p-8 text-left">
+                                <span
+                                    class="inline-block px-3 py-1 mb-3 text-xs font-bold text-indigo-300 bg-indigo-900/50 rounded-full border border-indigo-500/30 backdrop-blur-sm">2025</span>
+                                <h4 class="text-2xl font-bold text-white mb-2 font-heading">v1.0 Başlangıç</h4>
+                                <p class="text-sm text-slate-300 max-w-sm">Sade minimalist tasarım. Gereksiz her şeyden
+                                    arındırılmış saf portfolyo.</p>
+                                <div
+                                    class="mt-4 flex items-center text-sm font-bold text-indigo-400 opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 transition-all duration-300">
+                                    Işınlan ⚡
+                                </div>
+                            </div>
+                        </a>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Scroll to Top Button -->
     <button id="scroll-top-btn"
         class="fixed bottom-8 right-8 bg-brand-primary text-white p-3 rounded-full shadow-lg translate-y-20 opacity-0 transition-all duration-300 hover:bg-brand-hover z-50">
@@ -425,6 +580,7 @@
         </svg>
     </button>
 
+    <script src="js/particles.js" defer></script>
     <script src="js/script.js?v=2"></script>
 </body>
 

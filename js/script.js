@@ -26,42 +26,79 @@ menu.querySelectorAll('a').forEach(link => {
     });
 });
 
-// Dark Mode Logic
+// Dark Mode Logic (Dropdown Menu)
 const themeToggleBtn = document.getElementById('theme-toggle');
-const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
-const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+const themeDropdown = document.getElementById('theme-dropdown');
+const themeIcons = {
+    light: document.getElementById('icon-display-light'),
+    dark: document.getElementById('icon-display-dark'),
+    system: document.getElementById('icon-display-system')
+};
 
-// Change the icons inside the button based on previous settings
-if (localStorage.getItem('color-theme') === 'dark') {
-    document.documentElement.classList.add('dark');
-    themeToggleLightIcon.classList.remove('hidden');
-} else {
-    document.documentElement.classList.remove('dark');
-    themeToggleDarkIcon.classList.remove('hidden');
+// Available modes
+const modes = ['light', 'dark', 'system'];
+
+// Get saved mode or default to system
+let currentMode = localStorage.getItem('color-theme') || 'system';
+if (!modes.includes(currentMode)) currentMode = 'system';
+
+function applyTheme(mode) {
+    // Reset all icons in the main button
+    Object.values(themeIcons).forEach(icon => {
+        if (icon) icon.classList.add('hidden');
+    });
+
+    // Show current mode icon
+    if (themeIcons[mode]) themeIcons[mode].classList.remove('hidden');
+
+    // Apply Logic
+    if (mode === 'dark') {
+        document.documentElement.classList.add('dark');
+        localStorage.setItem('color-theme', 'dark');
+    } else if (mode === 'light') {
+        document.documentElement.classList.remove('dark');
+        localStorage.setItem('color-theme', 'light');
+    } else {
+        // System Mode
+        localStorage.setItem('color-theme', 'system');
+        if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+    }
 }
 
-themeToggleBtn.addEventListener('click', function () {
-    // toggle icons inside button
-    themeToggleDarkIcon.classList.toggle('hidden');
-    themeToggleLightIcon.classList.toggle('hidden');
+// Global function for onclick events in HTML
+window.selectTheme = function (mode) {
+    currentMode = mode;
+    applyTheme(mode);
+    themeDropdown.classList.add('hidden');
+}
 
-    // if set via local storage previously
-    if (localStorage.getItem('color-theme')) {
-        if (localStorage.getItem('color-theme') === 'light') {
+// Initial Apply
+applyTheme(currentMode);
+
+// Toggle Dropdown
+themeToggleBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    themeDropdown.classList.toggle('hidden');
+});
+
+// Close Dropdown when clicking outside
+document.addEventListener('click', (e) => {
+    if (!themeToggleBtn.contains(e.target) && !themeDropdown.contains(e.target)) {
+        themeDropdown.classList.add('hidden');
+    }
+});
+
+// Listener for System Preference Changes
+window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+    if (currentMode === 'system') {
+        if (e.matches) {
             document.documentElement.classList.add('dark');
-            localStorage.setItem('color-theme', 'dark');
         } else {
             document.documentElement.classList.remove('dark');
-            localStorage.setItem('color-theme', 'light');
-        }
-    } else {
-        // if NOT set via local storage previously
-        if (document.documentElement.classList.contains('dark')) {
-            document.documentElement.classList.remove('dark');
-            localStorage.setItem('color-theme', 'light');
-        } else {
-            document.documentElement.classList.add('dark');
-            localStorage.setItem('color-theme', 'dark');
         }
     }
 });
@@ -186,3 +223,25 @@ document.addEventListener('DOMContentLoaded', () => {
         observer.observe(el);
     });
 });
+
+// Version Modal Logic
+window.toggleModal = function (show) {
+    const modal = document.getElementById('version-modal');
+    const backdrop = document.getElementById('modal-backdrop');
+    const panel = document.getElementById('modal-panel');
+
+    if (show) {
+        modal.classList.remove('hidden');
+        // Small timeout to allow display:block to apply before transition
+        setTimeout(() => {
+            backdrop.classList.remove('opacity-0');
+            panel.classList.remove('opacity-0', 'translate-y-4');
+        }, 10);
+    } else {
+        backdrop.classList.add('opacity-0');
+        panel.classList.add('opacity-0', 'translate-y-4');
+        setTimeout(() => {
+            modal.classList.add('hidden');
+        }, 300);
+    }
+}
