@@ -30,7 +30,8 @@
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg sticky-top glass-nav">
         <div class="container">
-            <a class="navbar-brand fw-bold" href="javascript:void(0)" onclick="qrMenu.resetToAll()">
+            <a class="navbar-brand fw-bold" href="javascript:void(0)" onclick="qrMenu.resetToAll()"
+                aria-label="Ana Sayfa">
                 <i class="bi bi-fire text-primary-color"></i> Lezzet Durağı
             </a>
             <button class="btn btn-sm btn-outline-primary-color ms-auto" onclick="qrMenu.qrKodGoster()">
@@ -47,7 +48,7 @@
             <div class="search-wrapper mx-auto">
                 <div class="input-group input-group-lg shadow-sm">
                     <span class="input-group-text bg-white border-0 text-muted"><i class="bi bi-search"></i></span>
-                    <input type="text" id="search-bar" class="form-control border-0"
+                    <input type="text" id="search-bar" class="form-control border-0" aria-label="Yemek Ara"
                         placeholder="Ne yemek istersiniz? (Örn: Burger)">
                 </div>
             </div>
@@ -76,7 +77,7 @@
 
             <!-- Cart Section (Desktop) -->
             <div class="col-lg-4 d-none d-lg-block">
-                <div class="card border-0 shadow-sm sticky-lg-top" style="top: 90px; z-index: 100;">
+                <div class="card border-0 shadow-sm sticky-lg-top z-100 top-90px">
                     <div class="card-header bg-white border-0 pt-4 px-4">
                         <h5 class="fw-bold mb-0"><i class="bi bi-basket"></i> Sepetim</h5>
                     </div>
@@ -103,7 +104,7 @@
     </div>
 
     <!-- Mobile Cart Button -->
-    <div class="fixed-bottom p-3 d-lg-none" style="z-index: 1030;">
+    <div class="fixed-bottom p-3 d-lg-none z-1030">
         <button
             class="btn btn-primary-color w-100 py-3 rounded-3 fw-semibold shadow-lg d-flex justify-content-between align-items-center"
             type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileCartOffcanvas">
@@ -116,7 +117,7 @@
     <div class="offcanvas offcanvas-bottom h-75 rounded-top-4" tabindex="-1" id="mobileCartOffcanvas">
         <div class="offcanvas-header border-bottom">
             <h5 class="offcanvas-title fw-bold"><i class="bi bi-basket me-2"></i>Sepetim</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Kapat"></button>
         </div>
         <div class="offcanvas-body d-flex flex-column">
             <ul id="mobile-sepet-listesi" class="list-group list-group-flush mb-auto overflow-auto">
