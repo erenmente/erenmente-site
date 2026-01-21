@@ -5,10 +5,7 @@ body {
 }
 
 /* Masaüstü (Desktop) Ayarları */
-.group:hover .group-hover\:rotate-y-180 {
-    transform: rotateY(180deg);
-}
-
+/* Base Utilities (Mobile/Default) */
 .perspective-1000 {
     perspective: 1000px;
 }
@@ -18,13 +15,15 @@ body {
 }
 
 .backface-hidden {
-    backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
 }
 
 .rotate-y-180 {
     transform: rotateY(180deg);
 }
+
+
 
 /* Mobil menü animasyonu */
 #mobile-menu {
@@ -35,85 +34,4 @@ body {
 
 #mobile-menu.active {
     max-height: 300px;
-}
-
-/* --- SAFARI VE MOBİL İÇİN KESİN ÇÖZÜM --- */
-@media screen and (max-width: 768px) {
-
-    /* 1. Grid Düzeni: Tek sütuna zorla */
-    .grid {
-        display: flex !important;
-        flex-direction: column !important;
-        width: 100% !important;
-    }
-
-    #skills .grid {
-        display: grid !important;
-        grid-template-columns: repeat(2, 1fr) !important;
-        gap: 1rem !important;
-    }
-
-    /* 2. Kart Kapsayıcı: 3D Derinliği Tamamen Kapat */
-    .group.perspective-1000 {
-        perspective: none !important;
-        -webkit-perspective: none !important;
-        width: 100% !important;
-        height: auto !important;
-        margin-bottom: 2rem !important;
-        transform: none !important;
-    }
-
-    /* 3. Dönüş Yöneticisi: Düzleştir */
-    .transform-style-preserve-3d {
-        transform-style: flat !important;
-        -webkit-transform-style: flat !important;
-        position: static !important;
-        transform: none !important;
-    }
-
-    /* Hover İptali: Dokununca dönmesin */
-    .group:hover .group-hover\:rotate-y-180 {
-        transform: none !important;
-        -webkit-transform: none !important;
-    }
-
-    /* 4. ÖN VE ARKA YÜZLER: Alt alta diz ve düzelt */
-    .backface-hidden {
-        position: relative !important;
-        /* Üst üste binmeyi engelle */
-        top: auto !important;
-        left: auto !important;
-        display: block !important;
-        width: 100% !important;
-        height: auto !important;
-
-        /* Safari için Kritik Ayarlar: */
-        backface-visibility: visible !important;
-        -webkit-backface-visibility: visible !important;
-        transform: rotateY(0deg) !important;
-        -webkit-transform: rotateY(0deg) !important;
-
-        border-radius: 0.75rem !important;
-        margin-bottom: 0 !important;
-    }
-
-    /* İlk Kart (Beyaz Olan) */
-    .relative>.backface-hidden:first-child {
-        border-bottom-left-radius: 0 !important;
-        border-bottom-right-radius: 0 !important;
-        border-bottom: 1px solid #e2e8f0;
-        z-index: 2 !important;
-    }
-
-    /* İkinci Kart (Siyah Olan) */
-    .backface-hidden.rotate-y-180 {
-        border-top-left-radius: 0 !important;
-        border-top-right-radius: 0 !important;
-        margin-top: 0 !important;
-        background-color: #1e293b !important;
-
-        /* Ters dönmeyi engellemek için tekrar zorluyoruz */
-        transform: rotateY(0deg) !important;
-        -webkit-transform: rotateY(0deg) !important;
-    }
 }

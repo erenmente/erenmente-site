@@ -29,16 +29,16 @@ tailwind.config = {
                     '50%': { 'background-size': '200% 200%', 'background-position': 'right center' },
                 },
             },
-            plugins: [
-                function ({ addUtilities }) {
-                    addUtilities({
-                        '.perspective-1000': { perspective: '1000px' },
-                        '.transform-style-preserve-3d': { transformStyle: 'preserve-3d' },
-                        '.backface-hidden': { backfaceVisibility: 'hidden' },
-                        '.rotate-y-180': { transform: 'rotateY(180deg)' },
-                    })
-                }
-            ],
+        },
+    },
+    plugins: [
+        function ({ addUtilities }) {
+            addUtilities({
+                '.perspective-1000': { perspective: '1000px' },
+                '.transform-style-preserve-3d': { transformStyle: 'preserve-3d' },
+                '.backface-hidden': { backfaceVisibility: 'hidden' },
+                '.rotate-y-180': { transform: 'rotateY(180deg)' },
+            })
         }
-    }
+    ],
 }

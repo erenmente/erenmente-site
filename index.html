@@ -20,6 +20,8 @@
         href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Outfit:wght@500;700;900&family=Caveat:wght@600;700&family=Indie+Flower&display=swap"
         rel="stylesheet">
 
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="js/tailwind.config.js?v=1"></script>
 </head>
 
 <body
@@ -49,8 +51,7 @@
                             class="text-brand-text dark:text-slate-300 hover:text-brand-primary transition-colors px-3 py-2 rounded-md text-sm font-medium">Hakkımda</a>
                         <a href="#skills"
                             class="text-brand-text dark:text-slate-300 hover:text-brand-primary transition-colors px-3 py-2 rounded-md text-sm font-medium">Yetenekler</a>
-                        <a href="#experience"
-                            class="text-brand-text dark:text-slate-300 hover:text-brand-primary transition-colors px-3 py-2 rounded-md text-sm font-medium">Deneyim</a>
+
                         <a href="#projects"
                             class="text-brand-text dark:text-slate-300 hover:text-brand-primary transition-colors px-3 py-2 rounded-md text-sm font-medium">Projeler</a>
                         <a href="#contact"
@@ -140,8 +141,7 @@
                     class="block px-3 py-2 rounded-md text-base font-medium text-brand-text dark:text-slate-300 hover:text-brand-primary hover:bg-indigo-50 dark:hover:bg-slate-800">Hakkımda</a>
                 <a href="#skills"
                     class="block px-3 py-2 rounded-md text-base font-medium text-brand-text dark:text-slate-300 hover:text-brand-primary hover:bg-indigo-50 dark:hover:bg-slate-800">Yetenekler</a>
-                <a href="#experience"
-                    class="block px-3 py-2 rounded-md text-base font-medium text-brand-text dark:text-slate-300 hover:text-brand-primary hover:bg-indigo-50 dark:hover:bg-slate-800">Deneyim</a>
+
                 <a href="#projects"
                     class="block px-3 py-2 rounded-md text-base font-medium text-brand-text dark:text-slate-300 hover:text-brand-primary hover:bg-indigo-50 dark:hover:bg-slate-800">Projeler</a>
                 <a href="#contact"
@@ -229,80 +229,7 @@
         </div>
     </section>
 
-    <section id="experience"
-        class="py-20 bg-transparent overflow-hidden border-b border-brand-border dark:border-slate-800">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-2xl font-bold text-slate-900 dark:text-white mb-16 flex items-center">
-                <span class="w-2 h-8 bg-brand-primary rounded-sm mr-3"></span>
-                Deneyim & Eğitim
-            </h2>
 
-            <div class="relative py-10">
-                <!-- Vertical Line -->
-                <div
-                    class="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-gradient-to-b from-brand-primary/20 via-brand-primary/40 to-brand-primary/20 rounded-full">
-                </div>
-
-                <!-- Item 1 -->
-                <div class="mb-20 flex justify-between items-center w-full right-timeline group">
-                    <div class="order-1 w-5/12"></div>
-                    <div
-                        class="z-20 flex items-center order-1 bg-brand-primary shadow-xl w-10 h-10 rounded-full ring-4 ring-white dark:ring-slate-900 transition-all duration-300 group-hover:scale-125">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-white mx-auto" fill="none"
-                            viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M12 14l9-5-9-5-9 5 9 5z" />
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
-                        </svg>
-                    </div>
-                    <div class="order-1 w-5/12 text-left pl-8">
-                        <span
-                            class="inline-block px-3 py-1 mb-2 text-xs font-semibold tracking-wider text-brand-primary uppercase bg-indigo-50 dark:bg-slate-800 rounded-full border border-indigo-100 dark:border-slate-700">2025
-                            - Günümüz</span>
-                        <h3 id="exp-firat"
-                            class="text-2xl font-bold text-slate-900 dark:text-white mb-1 cursor-pointer font-hand">
-                            Fırat Üniversitesi</h3>
-                        <p class="text-base text-brand-primary font-medium mb-2">Yazılım Mühendisliği</p>
-                        <p
-                            class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed shadow-sm p-3 bg-white/70 dark:bg-slate-800/80 backdrop-blur-sm rounded-lg border border-slate-100 dark:border-slate-700">
-                            Mühendislik temelleri, algoritma analizi ve nesne tabanlı programlama üzerine akademik
-                            eğitim.
-                        </p>
-                    </div>
-                </div>
-
-                <!-- Item 2 -->
-                <div class="mb-8 flex justify-between items-center w-full flex-row-reverse left-timeline group">
-                    <div class="order-1 w-5/12"></div>
-                    <div
-                        class="z-20 flex items-center order-1 bg-slate-800 dark:bg-slate-700 shadow-xl w-10 h-10 rounded-full ring-4 ring-white dark:ring-slate-900 transition-all duration-300 group-hover:scale-125">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-white mx-auto" fill="none"
-                            viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
-                        </svg>
-                    </div>
-                    <div class="order-1 w-5/12 text-right pr-8">
-                        <span
-                            class="inline-block px-3 py-1 mb-2 text-xs font-semibold tracking-wider text-slate-500 uppercase bg-slate-100 dark:bg-slate-800 rounded-full border border-slate-200 dark:border-slate-600">2020
-                            - 2024</span>
-                        <h3 id="exp-borusan"
-                            class="text-2xl font-bold text-slate-900 dark:text-white mb-1 cursor-pointer font-hand">
-                            Borusan Asım
-                            Kocabıyık M.T.A.L
-                        </h3>
-                        <p class="text-base text-brand-primary font-medium mb-2">Bilişim Teknolojileri</p>
-                        <p
-                            class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed shadow-sm p-3 bg-white/70 dark:bg-slate-800/80 backdrop-blur-sm rounded-lg border border-slate-100 dark:border-slate-700">
-                            Web Programlama, Veritabanı Yönetimi ve Temel Yazılım eğitimi.
-                        </p>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
 
     <section id="projects" class="py-20 bg-white/60 dark:bg-slate-900/60 backdrop-blur-sm">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
