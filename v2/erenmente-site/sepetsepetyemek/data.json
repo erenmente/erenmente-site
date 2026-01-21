@@ -1,0 +1,114 @@
+[
+  {
+    "id": 1,
+    "kategori": "Çorbalar",
+    "ad": "Mercimek Çorbası",
+    "fiyat": "80 TL",
+    "aciklama": "Kruton ekmek ve limon ile servis edilir.",
+    "gorsel": "img/mercimek.jpg"
+  },
+  {
+    "id": 4,
+    "kategori": "Çorbalar",
+    "ad": "Ezogelin Çorbası",
+    "fiyat": "85 TL",
+    "aciklama": "Naneli sos ve limon eşliğinde.",
+    "gorsel": "img/ezogelin.jpg"
+  },
+  {
+    "id": 5,
+    "kategori": "Çorbalar",
+    "ad": "Domates Çorbası",
+    "fiyat": "80 TL",
+    "aciklama": "Kaşar rendesi ve kıtır ekmek ile.",
+    "gorsel": "img/domates.jpg"
+  },
+  {
+    "id": 2,
+    "kategori": "Ana Yemekler",
+    "ad": "Adana Kebap",
+    "fiyat": "320 TL",
+    "aciklama": "Zırh kıyması, közlenmiş biber ve domates ile.",
+    "gorsel": "img/adana.jpg"
+  },
+  {
+    "id": 6,
+    "kategori": "Ana Yemekler",
+    "ad": "İskender Kebap",
+    "fiyat": "380 TL",
+    "aciklama": "Özel soslu döner, tereyağı ve yoğurt ile.",
+    "gorsel": "img/iskender.jpg"
+  },
+  {
+    "id": 7,
+    "kategori": "Ana Yemekler",
+    "ad": "Izgara Köfte",
+    "fiyat": "290 TL",
+    "aciklama": "Dana kıymadan özel baharatlarla hazırlanmış köfteler.",
+    "gorsel": "img/kofte.jpg"
+  },
+  {
+    "id": 8,
+    "kategori": "Ana Yemekler",
+    "ad": "Tavuk Şiş",
+    "fiyat": "260 TL",
+    "aciklama": "Marine edilmiş tavuk göğsü, pilav ve salata ile.",
+    "gorsel": "img/tavuk.jpg"
+  },
+  {
+    "id": 9,
+    "kategori": "Ana Yemekler",
+    "ad": "Lahmacun",
+    "fiyat": "120 TL",
+    "aciklama": "Taş fırında, bol malzemeli, çıtır lahmacun.",
+    "gorsel": "img/lahmacun.jpg"
+  },
+  {
+    "id": 3,
+    "kategori": "Tatlılar",
+    "ad": "Sütlaç",
+    "fiyat": "90 TL",
+    "aciklama": "Fırınlanmış, fındık parçacıkları ile.",
+    "gorsel": "img/sutlac.jpg"
+  },
+  {
+    "id": 10,
+    "kategori": "Tatlılar",
+    "ad": "Künefe",
+    "fiyat": "140 TL",
+    "aciklama": "Hatay peyniri ile sıcak servis edilir.",
+    "gorsel": "img/kunefe.jpg"
+  },
+  {
+    "id": 11,
+    "kategori": "Tatlılar",
+    "ad": "Fıstıklı Baklava",
+    "fiyat": "160 TL",
+    "aciklama": "Bol fıstıklı, çıtır baklava (3 dilim).",
+    "gorsel": "https://images.unsplash.com/photo-1617806501441-2a4a45c5316c?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
+  },
+  {
+    "id": 12,
+    "kategori": "İçecekler",
+    "ad": "Ayran",
+    "fiyat": "30 TL",
+    "aciklama": "Bol köpüklü yayık ayranı.",
+    "gorsel": "img/ayran.jpg"
+  },
+  {
+    "id": 13,
+    "kategori": "İçecekler",
+    "ad": "Kola",
+    "fiyat": "40 TL",
+    "aciklama": "330ml kutu.",
+    "gorsel": "img/kola.jpg"
+  },
+  {
+    "id": 14,
+    "kategori": "İçecekler",
+    "ad": "Şalgam Suyu",
+    "fiyat": "35 TL",
+    "aciklama": "Acılı veya acısız seçenekleriyle.",
+    "gorsel": "img/salgam.jpg"
+  }
+]
