@@ -54,6 +54,7 @@ body {
 /* Navigation */
 .glass-nav {
     background: rgba(255, 255, 255, 0.95);
+    -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px);
     border-bottom: 1px solid rgba(0, 0, 0, 0.05);
 }
@@ -240,4 +241,17 @@ body {
     transform: translateX(-5px);
     background: white;
     color: #FF5A5F;
+}
+
+/* Utility classes for z-index */
+.z-100 {
+    z-index: 100 !important;
+}
+
+.z-1030 {
+    z-index: 1030 !important;
+}
+
+.top-90px {
+    top: 90px !important;
 }

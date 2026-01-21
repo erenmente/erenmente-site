@@ -16,9 +16,9 @@ tailwind.config = {
                 }
             },
             fontFamily: {
-                sans: ['Inter', 'sans-serif'],
-                heading: ['Outfit', 'sans-serif'],
-                hand: ['Caveat', 'cursive'],
+                sans: ['Indie Flower', 'cursive', 'sans-serif'],
+                heading: ['Indie Flower', 'cursive', 'sans-serif'],
+                hand: ['Indie Flower', 'cursive'],
             },
             animation: {
                 'gradient-x': 'gradient-x 3s ease infinite',
