@@ -12,7 +12,7 @@ let particles = [];
 let isHovering = false;
 
 // Configs
-const PARTICLE_COUNT = 350;
+const PARTICLE_COUNT = window.innerWidth < 768 ? 100 : 200;
 const PARTICLE_SIZE = 3.5;
 const LINK_DISTANCE = 90; // Reduced link distance for smaller groups
 const FLOAT_SPEED = 0.2;

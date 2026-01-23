@@ -38,7 +38,12 @@ const App = {
         const nav = document.querySelector('nav');
         if (!nav) return;
 
+        let lastScroll = 0;
         window.addEventListener('scroll', () => {
+            const now = Date.now();
+            if (now - lastScroll < 50) return; // Throttle 50ms
+            lastScroll = now;
+
             if (window.scrollY > 10) {
                 nav.classList.add('shadow-lg', 'bg-white/95', 'dark:bg-slate-900/95');
                 nav.classList.remove('bg-white/80', 'dark:bg-slate-900/80');
@@ -173,7 +178,12 @@ const App = {
         const btn = document.getElementById('scroll-top-btn');
         if (!btn) return;
 
+        let lastScrollTop = 0;
         window.addEventListener('scroll', () => {
+            const now = Date.now();
+            if (now - lastScrollTop < 100) return;
+            lastScrollTop = now;
+
             if (window.scrollY > 300) {
                 btn.classList.remove('translate-y-20', 'opacity-0');
             } else {
@@ -190,7 +200,12 @@ const App = {
         const sections = document.querySelectorAll('header[id], section[id]');
         const navLinks = document.querySelectorAll('.space-x-8 a, #mobile-menu a');
 
+        let lastScrollSpy = 0;
         window.addEventListener('scroll', () => {
+            const now = Date.now();
+            if (now - lastScrollSpy < 100) return;
+            lastScrollSpy = now;
+
             let current = '';
 
             sections.forEach(section => {
@@ -290,7 +305,13 @@ const App = {
         wrapper.innerHTML = html;
 
         // Track mouse movement
+        // Track mouse movement with throttle
+        let lastMouse = 0;
         document.addEventListener('mousemove', (e) => {
+            const now = Date.now();
+            if (now - lastMouse < 20) return; // 50fps max
+            lastMouse = now;
+
             const x = e.clientX;
             const y = e.clientY;
             wrapper.style.setProperty('--mouse-x', `${x}px`);

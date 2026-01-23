@@ -4341,3 +4341,19 @@ body {
     paint-order: markers;
   }
 }
+/* Custom 3D Flip Utilities (Replaced CDN) */
+.perspective-1000 { perspective: 1000px; }
+.transform-style-preserve-3d { transform-style: preserve-3d; }
+.backface-hidden { backface-visibility: hidden; -webkit-backface-visibility: hidden; }
+.rotate-y-180 { transform: rotateY(180deg); }
+
+@media (min-width: 768px) {
+    .md\:perspective-1000 { perspective: 1000px; }
+    .md\:transform-style-preserve-3d { transform-style: preserve-3d; }
+    .md\:backface-hidden { backface-visibility: hidden; -webkit-backface-visibility: hidden; }
+    .md\:rotate-y-180 { transform: rotateY(180deg); }
+    .group:hover .group-hover\:md\:rotate-y-180 { transform: rotateY(180deg); }
+}
+
+.bg-brand-card_back { background-color: #1e293b; }
+
