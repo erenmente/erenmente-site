@@ -1,0 +1,123 @@
+{
+    "posts": [
+        {
+            "id": 1,
+            "title": "Java'da OOP Prensiplerini Anlamak",
+            "slug": "java-oop-prensipleri",
+            "excerpt": "Object-Oriented Programming'in temel prensiplerini ve Java'da nasıl uygulandığını detaylı bir şekilde inceliyoruz.",
+            "content": "Bu yazıda OOP'nin dört temel prensibini (Encapsulation, Inheritance, Polymorphism, Abstraction) detaylı olarak ele alacağız...",
+            "author": "Eren Mente",
+            "date": "2026-01-20",
+            "readTime": 8,
+            "category": "Java",
+            "tags": [
+                "Java",
+                "OOP",
+                "Programlama"
+            ],
+            "featured": true,
+            "image": "img/blog/java-oop.jpg"
+        },
+        {
+            "id": 2,
+            "title": "Flask ile REST API Geliştirme",
+            "slug": "flask-rest-api",
+            "excerpt": "Python Flask framework'ü kullanarak modern ve güvenli REST API'ler nasıl geliştirilir?",
+            "content": "Flask, Python'un en popüler web framework'lerinden biri. Bu yazıda basit bir REST API oluşturacağız...",
+            "author": "Eren Mente",
+            "date": "2026-01-15",
+            "readTime": 12,
+            "category": "Python",
+            "tags": [
+                "Python",
+                "Flask",
+                "API",
+                "Backend"
+            ],
+            "featured": false,
+            "image": "img/blog/flask-api.jpg"
+        },
+        {
+            "id": 3,
+            "title": "Algoritma Karmaşıklığı: Big O Notation",
+            "slug": "big-o-notation",
+            "excerpt": "Algoritmaların performansını ölçmek için kullanılan Big O notasyonunu örneklerle öğrenin.",
+            "content": "Big O notasyonu, bir algoritmanın zaman ve alan karmaşıklığını ifade etmek için kullanılır...",
+            "author": "Eren Mente",
+            "date": "2026-01-10",
+            "readTime": 10,
+            "category": "Algoritmalar",
+            "tags": [
+                "Algoritmalar",
+                "Veri Yapıları",
+                "Karmaşıklık"
+            ],
+            "featured": false,
+            "image": "img/blog/big-o.jpg"
+        },
+        {
+            "id": 4,
+            "title": "Modern Web Geliştirmede Glassmorphism",
+            "slug": "glassmorphism-tasarim",
+            "excerpt": "2024'ün en popüler UI trend'lerinden glassmorphism tasarımını CSS ile nasıl uygularsınız?",
+            "content": "Glassmorphism, Apple'ın macOS Big Sur ile popülerleştirdiği bir tasarım trendi...",
+            "author": "Eren Mente",
+            "date": "2026-01-05",
+            "readTime": 6,
+            "category": "Web Development",
+            "tags": [
+                "CSS",
+                "UI/UX",
+                "Design",
+                "Glassmorphism"
+            ],
+            "featured": false,
+            "image": "img/blog/glassmorphism.jpg"
+        },
+        {
+            "id": 5,
+            "title": "Git & GitHub Best Practices",
+            "slug": "git-github-best-practices",
+            "excerpt": "Profesyonel projelerde Git kullanımı için en iyi uygulamalar ve commit mesajı standartları.",
+            "content": "Git, modern yazılım geliştirmenin olmazsa olmazı. Bu yazıda profesyonel Git kullanımını öğreneceksiniz...",
+            "author": "Eren Mente",
+            "date": "2025-12-28",
+            "readTime": 7,
+            "category": "DevOps",
+            "tags": [
+                "Git",
+                "GitHub",
+                "Version Control",
+                "Best Practices"
+            ],
+            "featured": false,
+            "image": "img/blog/git-github.jpg"
+        },
+        {
+            "id": 6,
+            "title": "Fırat Üniversitesi'nde İlk Dönem Deneyimlerim",
+            "slug": "firat-universitesi-deneyimler",
+            "excerpt": "Yazılım mühendisliği bölümünde ilk dönem neler öğrendim? Tavsiyeleri ve deneyimlerimle birlikte...",
+            "content": "Fırat Üniversitesi Yazılım Mühendisliği bölümündeki ilk dönem deneyimlerimi paylaşıyorum...",
+            "author": "Eren Mente",
+            "date": "2025-12-20",
+            "readTime": 5,
+            "category": "Kişisel",
+            "tags": [
+                "Eğitim",
+                "Üniversite",
+                "Deneyim"
+            ],
+            "featured": false,
+            "image": "img/blog/university.jpg"
+        }
+    ],
+    "categories": [
+        "Java",
+        "Python",
+        "Algoritmalar",
+        "Web Development",
+        "DevOps",
+        "Kişisel"
+    ]
+}

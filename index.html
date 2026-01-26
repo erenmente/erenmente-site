@@ -4,42 +4,80 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Primary Meta Tags -->
+    <title>Muhammet Eren Mente | Yazılım Mühendisliği Öğrencisi</title>
+    <meta name="title" content="Muhammet Eren Mente | Yazılım Mühendisliği Öğrencisi">
     <meta name="description"
-        content="Muhammet Eren Mente - Yazılım Mühendisliği Öğrencisi. Java, Python ve Modern Web Teknolojileri portfolyosu.">
-    <title>Eren Mente | Software Engineering Student</title>
-    <meta property="og:title" content="Eren Mente | Software Engineering Student">
-    <meta property="og:description"
-        content="Yazılım Mühendisliği öğrencisi portfolyosu. Java, Python ve Modern Web Teknolojileri.">
+        content="Fırat Üniversitesi Yazılım Mühendisliği öğrencisi. Java, Python ve Modern Web Teknolojileri ile projeler geliştiriyorum.">
+    <meta name="keywords" content="Eren Mente, Yazılım Mühendisliği, Java, Python, Portfolio, Web Development">
+    <meta name="author" content="Muhammet Eren Mente">
 
-    <meta property="og:url" content="https://erenmente-com">
+    <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.erenmente.com/">
+    <meta property="og:title" content="Muhammet Eren Mente | Yazılım Mühendisliği Öğrencisi">
+    <meta property="og:description"
+        content="Fırat Üniversitesi Yazılım Mühendisliği öğrencisi. Java, Python ve Modern Web Teknolojileri ile projeler geliştiriyorum.">
+    <meta property="og:image" content="https://www.erenmente.com/img/preview-v2.png">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://www.erenmente.com/">
+    <meta name="twitter:title" content="Muhammet Eren Mente | Yazılım Mühendisliği">
+    <meta name="twitter:description"
+        content="Yazılım Mühendisliği öğrencisi - Java, Python ve Modern Web Teknolojileri">
+    <meta name="twitter:image" content="https://www.erenmente.com/img/preview-v2.png">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+
+
+    <!-- Stylesheets -->
     <link rel="stylesheet" href="css/style.css">
 
+    <!-- Fonts -->
     <link
         href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Outfit:wght@500;700;900&family=Caveat:wght@600;700&family=Indie+Flower&display=swap"
         rel="stylesheet">
-
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="js/tailwind.config.js?v=1"></script>
 </head>
 
 <body
-    class="bg-brand-bg text-brand-text antialiased selection:bg-brand-primary selection:text-white dark:bg-slate-900 dark:text-slate-100 relative">
+    class="bg-brand-bg text-brand-text antialiased selection:bg-brand-primary selection:text-white dark:bg-brand-dark-bg dark:text-brand-dark-text relative transition-colors duration-300">
 
-    <!-- Spotlight Effect Background -->
-    <div id="spotlight-wrapper" class="spotlight-mask hidden md:block">
-        <!-- Words will be injected via JS -->
+    <!-- Loading Screen -->
+    <div id="loading-screen"
+        class="fixed inset-0 z-[9999] bg-brand-bg dark:bg-brand-dark-bg flex items-center justify-center transition-opacity duration-500">
+        <div class="text-center">
+            <div class="relative">
+                <!-- Animated Logo/Spinner -->
+                <div class="w-20 h-20 mx-auto mb-4 relative">
+                    <div class="absolute inset-0 border-4 border-brand-primary/20 rounded-full"></div>
+                    <div
+                        class="absolute inset-0 border-4 border-transparent border-t-brand-primary rounded-full animate-spin">
+                    </div>
+                </div>
+                <h2
+                    class="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-brand-primary to-brand-accent font-heading">
+                    Eren Mente
+                </h2>
+                <p class="text-sm text-slate-500 dark:text-slate-400 mt-2">Yükleniyor...</p>
+            </div>
+        </div>
     </div>
 
+
+
     <nav
-        class="fixed w-full z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-brand-border dark:border-slate-800 transition-all duration-300">
+        class="fixed w-full z-50 glassmorphism dark:bg-brand-dark-surface/80 backdrop-blur-md border-b border-brand-border dark:border-brand-dark-border transition-all duration-300">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16">
                 <div class="flex-shrink-0 cursor-pointer group">
                     <a href="#" class="text-2xl font-extrabold tracking-tight">
-                        <span
-                            class="bg-clip-text text-transparent bg-gradient-to-r from-brand-primary via-brand-accent to-brand-primary animate-gradient-x bg-[length:200%_auto]">
+                        <span class="holographic-bg">
                             erenmente
                         </span>
                     </a>
@@ -51,11 +89,12 @@
                             class="text-brand-text dark:text-slate-300 hover:text-brand-primary transition-colors px-3 py-2 rounded-md text-sm font-medium">Hakkımda</a>
                         <a href="#skills"
                             class="text-brand-text dark:text-slate-300 hover:text-brand-primary transition-colors px-3 py-2 rounded-md text-sm font-medium">Yetenekler</a>
-
+                        <a href="#blog"
+                            class="text-brand-text dark:text-slate-300 hover:text-brand-primary transition-colors px-3 py-2 rounded-md text-sm font-medium">Blog</a>
                         <a href="#projects"
                             class="text-brand-text dark:text-slate-300 hover:text-brand-primary transition-colors px-3 py-2 rounded-md text-sm font-medium">Projeler</a>
                         <a href="#contact"
-                            class="bg-brand-primary hover:bg-brand-hover text-white px-4 py-2 rounded-md text-sm font-medium transition-all shadow-md shadow-indigo-500/20">İletişim</a>
+                            class="bg-brand-primary hover:bg-brand-hover text-white px-4 py-2 rounded-md text-sm font-medium transition-all shadow-md shadow-brand-primary/20 hover:shadow-brand-primary/40 hover:scale-105">İletişim</a>
 
                         <!-- Dark Mode Dropdown -->
                         <div class="relative ml-4">
@@ -135,30 +174,31 @@
         </div>
 
         <div id="mobile-menu"
-            class="md:hidden bg-white dark:bg-slate-900 border-b border-brand-border dark:border-slate-800">
+            class="md:hidden glassmorphism dark:bg-brand-dark-surface border-b border-brand-border dark:border-brand-dark-border">
             <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 text-center">
                 <a href="#about"
                     class="block px-3 py-2 rounded-md text-base font-medium text-brand-text dark:text-slate-300 hover:text-brand-primary hover:bg-indigo-50 dark:hover:bg-slate-800">Hakkımda</a>
                 <a href="#skills"
                     class="block px-3 py-2 rounded-md text-base font-medium text-brand-text dark:text-slate-300 hover:text-brand-primary hover:bg-indigo-50 dark:hover:bg-slate-800">Yetenekler</a>
-
+                <a href="#blog"
+                    class="block px-3 py-2 rounded-md text-base font-medium text-brand-text dark:text-slate-300 hover:text-brand-primary hover:bg-indigo-50 dark:hover:bg-slate-800">Blog</a>
                 <a href="#projects"
                     class="block px-3 py-2 rounded-md text-base font-medium text-brand-text dark:text-slate-300 hover:text-brand-primary hover:bg-indigo-50 dark:hover:bg-slate-800">Projeler</a>
                 <a href="#contact"
-                    class="block px-3 py-2 rounded-md text-base font-medium text-white bg-brand-primary">İletişim</a>
+                    class="block px-3 py-2 rounded-md text-base font-medium text-white bg-brand-primary hover:bg-brand-hover shadow-md shadow-brand-primary/20">İletişim</a>
             </div>
         </div>
     </nav>
 
     <header id="about" class="min-h-screen flex items-center justify-center pt-16 relative overflow-hidden">
         <div
-            class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-brand-primary/5 rounded-full blur-[120px] -z-10">
+            class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-r from-brand-primary/20 via-brand-accent/20 to-brand-neon-cyan/20 rounded-full blur-[120px] -z-10 animate-pulse">
         </div>
 
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <div
-                class="inline-block px-3 py-1 mb-6 text-xs font-semibold tracking-wider text-brand-primary uppercase bg-indigo-50 dark:bg-slate-800 dark:border-slate-700 rounded-full border border-indigo-100">
-                <span id="typing-text"></span><span class="animate-pulse">|</span>
+                class="inline-block px-3 py-1 mb-6 text-xs font-semibold tracking-wider text-brand-primary uppercase glassmorphism dark:border-brand-dark-border rounded-full border border-brand-border">
+                <span id="typing-text"></span><span class="animate-pulse text-brand-accent">|</span>
             </div>
             <h1 id="hero-name"
                 class="text-5xl md:text-7xl font-hand font-bold text-slate-900 dark:text-white mb-6 tracking-tight cursor-default relative z-10">
@@ -180,12 +220,12 @@
             <div class="flex flex-wrap justify-center gap-4">
 
                 <a href="#projects"
-                    class="px-6 py-3 bg-brand-primary text-white font-medium rounded-lg hover:bg-brand-hover transition-all shadow-lg shadow-indigo-500/20">
+                    class="px-6 py-3 bg-brand-primary text-white font-medium rounded-lg hover:bg-brand-hover transition-all shadow-lg shadow-brand-primary/30 hover:shadow-brand-primary/50 hover:scale-105">
                     Projelerimi Gör
                 </a>
 
                 <a href="#contact"
-                    class="px-6 py-3 border border-brand-border dark:border-slate-700 text-slate-600 dark:text-slate-300 font-medium rounded-lg hover:border-brand-primary hover:text-brand-primary transition-colors bg-white dark:bg-slate-800">
+                    class="px-6 py-3 border-2 border-brand-primary dark:border-brand-primary text-brand-primary dark:text-brand-primary font-medium rounded-lg hover:bg-brand-primary hover:text-white transition-all glassmorphism hover:scale-105">
                     Bana Ulaşın
                 </a>
 
@@ -194,44 +234,135 @@
     </header>
 
     <section id="skills"
-        class="py-20 bg-white/60 dark:bg-slate-900/60 backdrop-blur-sm border-y border-brand-border dark:border-slate-800">
+        class="py-20 bg-brand-surface/60 dark:bg-brand-dark-surface/60 backdrop-blur-sm border-y border-brand-border dark:border-brand-dark-border">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 class="text-2xl font-bold text-slate-900 dark:text-white mb-10 flex items-center">
                 <span class="w-2 h-8 bg-brand-primary rounded-sm mr-3"></span>
                 Teknik Yetkinlikler
             </h2>
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                <div
-                    class="bg-white/80 dark:bg-slate-800/80 p-5 rounded-lg border border-brand-border dark:border-slate-700 hover:border-brand-primary hover:shadow-md transition-all group backdrop-blur-md">
-                    <h3 class="text-lg font-semibold text-slate-800 dark:text-white group-hover:text-brand-primary">Java
-                    </h3>
-                    <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">OOP, Data Structures</p>
+
+            <!-- Progress Bars Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Java -->
+                <div class="skill-item opacity-0">
+                    <div class="flex justify-between mb-2">
+                        <span class="text-sm font-semibold text-slate-700 dark:text-slate-200">Java</span>
+                        <span class="text-sm font-medium text-brand-primary skill-percentage">0%</span>
+                    </div>
+                    <div class="h-2 bg-gray-200 dark:bg-slate-700 rounded-full overflow-hidden">
+                        <div class="skill-bar h-full bg-gradient-to-r from-brand-primary to-brand-accent rounded-full transition-all duration-1000 ease-out"
+                            data-progress="85" style="width: 0%"></div>
+                    </div>
+                    <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">OOP, Data Structures, Spring Boot</p>
                 </div>
-                <div
-                    class="bg-white/80 dark:bg-slate-800/80 p-5 rounded-lg border border-brand-border dark:border-slate-700 hover:border-brand-primary hover:shadow-md transition-all group backdrop-blur-md">
-                    <h3 class="text-lg font-semibold text-slate-800 dark:text-white group-hover:text-brand-primary">
-                        Python</h3>
-                    <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Scripting, Automation</p>
+
+                <!-- Python -->
+                <div class="skill-item opacity-0">
+                    <div class="flex justify-between mb-2">
+                        <span class="text-sm font-semibold text-slate-700 dark:text-slate-200">Python</span>
+                        <span class="text-sm font-medium text-brand-primary skill-percentage">0%</span>
+                    </div>
+                    <div class="h-2 bg-gray-200 dark:bg-slate-700 rounded-full overflow-hidden">
+                        <div class="skill-bar h-full bg-gradient-to-r from-brand-accent to-purple-600 rounded-full transition-all duration-1000 ease-out"
+                            data-progress="75" style="width: 0%"></div>
+                    </div>
+                    <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Flask, Automation, Scripting</p>
                 </div>
-                <div
-                    class="bg-white/80 dark:bg-slate-800/80 p-5 rounded-lg border border-brand-border dark:border-slate-700 hover:border-brand-primary hover:shadow-md transition-all group backdrop-blur-md">
-                    <h3 class="text-lg font-semibold text-slate-800 dark:text-white group-hover:text-brand-primary">
-                        Backend Basics</h3>
-                    <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">SQL, API Logic</p>
+
+                <!-- SQL & Databases -->
+                <div class="skill-item opacity-0">
+                    <div class="flex justify-between mb-2">
+                        <span class="text-sm font-semibold text-slate-700 dark:text-slate-200">SQL & Databases</span>
+                        <span class="text-sm font-medium text-brand-primary skill-percentage">0%</span>
+                    </div>
+                    <div class="h-2 bg-gray-200 dark:bg-slate-700 rounded-full overflow-hidden">
+                        <div class="skill-bar h-full bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full transition-all duration-1000 ease-out"
+                            data-progress="70" style="width: 0%"></div>
+                    </div>
+                    <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">PostgreSQL, MySQL, Database Design</p>
                 </div>
-                <div
-                    class="bg-white/80 dark:bg-slate-800/80 p-5 rounded-lg border border-brand-border dark:border-slate-700 hover:border-brand-primary hover:shadow-md transition-all group backdrop-blur-md">
-                    <h3 class="text-lg font-semibold text-slate-800 dark:text-white group-hover:text-brand-primary">
-                        Tools</h3>
-                    <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Git, Linux, VS Code</p>
+
+                <!-- Web Development -->
+                <div class="skill-item opacity-0">
+                    <div class="flex justify-between mb-2">
+                        <span class="text-sm font-semibold text-slate-700 dark:text-slate-200">Web Development</span>
+                        <span class="text-sm font-medium text-brand-primary skill-percentage">0%</span>
+                    </div>
+                    <div class="h-2 bg-gray-200 dark:bg-slate-700 rounded-full overflow-hidden">
+                        <div class="skill-bar h-full bg-gradient-to-r from-green-500 to-emerald-500 rounded-full transition-all duration-1000 ease-out"
+                            data-progress="80" style="width: 0%"></div>
+                    </div>
+                    <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">HTML, CSS, JavaScript, Tailwind</p>
+                </div>
+
+                <!-- Git & Version Control -->
+                <div class="skill-item opacity-0">
+                    <div class="flex justify-between mb-2">
+                        <span class="text-sm font-semibold text-slate-700 dark:text-slate-200">Git & DevOps</span>
+                        <span class="text-sm font-medium text-brand-primary skill-percentage">0%</span>
+                    </div>
+                    <div class="h-2 bg-gray-200 dark:bg-slate-700 rounded-full overflow-hidden">
+                        <div class="skill-bar h-full bg-gradient-to-r from-orange-500 to-red-500 rounded-full transition-all duration-1000 ease-out"
+                            data-progress="75" style="width: 0%"></div>
+                    </div>
+                    <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Git, GitHub, CI/CD Basics</p>
+                </div>
+
+                <!-- Problem Solving -->
+                <div class="skill-item opacity-0">
+                    <div class="flex justify-between mb-2">
+                        <span class="text-sm font-semibold text-slate-700 dark:text-slate-200">Problem Solving</span>
+                        <span class="text-sm font-medium text-brand-primary skill-percentage">0%</span>
+                    </div>
+                    <div class="h-2 bg-gray-200 dark:bg-slate-700 rounded-full overflow-hidden">
+                        <div class="skill-bar h-full bg-gradient-to-r from-purple-500 to-pink-500 rounded-full transition-all duration-1000 ease-out"
+                            data-progress="90" style="width: 0%"></div>
+                    </div>
+                    <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Algorithms, Data Structures, Logic</p>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- Blog Section -->
+    <section id="blog" class="py-20 bg-brand-bg dark:bg-brand-dark-bg">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-2xl font-bold text-slate-900 dark:text-white mb-4 flex items-center">
+                <span class="w-2 h-8 bg-brand-primary rounded-sm mr-3"></span>
+                Yazılar & Blog
+            </h2>
+            <p class="text-slate-600 dark:text-slate-400 mb-8 max-w-2xl">
+                Öğrendiğim teknolojiler, projelerim ve deneyimlerimle ilgili yazılarımı burada paylaşıyorum.
+            </p>
 
+            <!-- Category Filter -->
+            <div class="flex flex-wrap gap-2 mb-8" id="blog-categories">
+                <button onclick="filterBlogPosts('all')"
+                    class="blog-category-btn active px-4 py-2 text-sm font-medium rounded-lg transition-all glassmorphism dark:bg-slate-800 border border-brand-border dark:border-slate-700 hover:border-brand-primary">
+                    Tümü
+                </button>
+                <!-- Categories will be dynamically loaded here -->
+            </div>
 
-    <section id="projects" class="py-20 bg-white/60 dark:bg-slate-900/60 backdrop-blur-sm">
+            <!-- Blog Posts Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="blog-posts-grid">
+                <!-- Blog cards will be dynamically loaded here -->
+                <div class="col-span-full flex items-center justify-center py-12">
+                    <div class="text-center">
+                        <div class="w-16 h-16 mx-auto mb-4 relative">
+                            <div class="absolute inset-0 border-4 border-brand-primary/20 rounded-full"></div>
+                            <div
+                                class="absolute inset-0 border-4 border-transparent border-t-brand-primary rounded-full animate-spin">
+                            </div>
+                        </div>
+                        <p class="text-slate-500 dark:text-slate-400">Yazılar yükleniyor...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="py-20 bg-brand-surface/60 dark:bg-brand-dark-surface/60 backdrop-blur-sm">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 class="text-2xl font-bold text-slate-900 dark:text-white mb-10 flex items-center">
                 <span class="w-2 h-8 bg-brand-primary rounded-sm mr-3"></span>
@@ -355,37 +486,42 @@
     </section>
 
     <section id="contact"
-        class="py-24 bg-brand-surface/60 dark:bg-slate-900/60 backdrop-blur-sm border-t border-brand-border dark:border-slate-800">
-        <div class="max-w-3xl mx-auto px-4 text-center">
-            <h2 class="text-3xl font-bold text-slate-900 dark:text-white mb-6">İletişime Geçin</h2>
-            <p class="text-slate-600 dark:text-slate-400 mb-10 text-lg">
-                Staj fırsatları, proje işbirlikleri veya sadece merhaba demek için bana ulaşabilirsiniz.
-            </p>
+        class="py-24 bg-brand-surface/60 dark:bg-brand-dark-surface/60 backdrop-blur-sm border-t border-brand-border dark:border-brand-dark-border">
+        <div class="max-w-5xl mx-auto px-4">
+            <h2 class="text-3xl font-bold text-slate-900 dark:text-white mb-12 text-center">İletişime
+                Geçin</h2>
 
-            <div class="flex flex-col md:flex-row justify-center gap-4">
-                <a href="mailto:muhammeterenmente@gmail.com"
-                    class="inline-flex items-center justify-center px-6 py-4 text-base font-medium text-white bg-brand-primary rounded-lg hover:bg-brand-hover transition-all shadow-lg hover:shadow-indigo-500/30">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24"
-                        stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                    </svg>
-                    Mail Gönder
-                </a>
-                <a href="https://www.linkedin.com/in/erenmente/" target="_blank" rel="noopener noreferrer"
-                    class="inline-flex items-center justify-center px-6 py-4 text-base font-medium text-white bg-[#0077b5] rounded-lg hover:opacity-90 transition-all shadow-lg">
-                    <svg class="h-5 w-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
-                        <path
-                            d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
-                    </svg>
-                    LinkedIn'de Bağlan
-                </a>
+            <div class="text-center">
+                <p class="text-slate-600 dark:text-slate-400 mb-8 text-lg leading-relaxed">
+                    Staj fırsatları, proje işbirlikleri veya sadece merhaba demek için bana ulaşabilirsiniz.
+                    Teknolojiyi kullanarak değer yaratmayı seviyorum ve her zaman yeni fikirlere açığım.
+                </p>
+
+                <div class="flex flex-col sm:flex-row justify-center gap-4">
+                    <a href="mailto:muhammeterenmente@gmail.com"
+                        class="inline-flex items-center justify-center px-6 py-4 text-base font-medium text-white bg-brand-primary rounded-lg hover:bg-brand-hover transition-all shadow-lg hover:shadow-brand-primary/50 hover:scale-105">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                        </svg>
+                        Mail Gönder
+                    </a>
+
+                    <a href="https://www.linkedin.com/in/erenmente/" target="_blank" rel="noopener noreferrer"
+                        class="inline-flex items-center justify-center px-6 py-4 text-base font-medium text-white bg-[#0077b5] rounded-lg hover:bg-[#006399] transition-all shadow-lg hover:shadow-blue-500/50 hover:scale-105">
+                        <svg class="h-5 w-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
+                            <path
+                                d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+                        </svg>
+                        LinkedIn'de Bağlan
+                    </a>
+                </div>
             </div>
-        </div>
     </section>
 
     <footer
-        class="bg-white/60 dark:bg-slate-900/60 backdrop-blur-sm border-t border-brand-border dark:border-slate-800 py-8">
+        class="bg-brand-surface/60 dark:bg-brand-dark-surface/60 backdrop-blur-sm border-t border-brand-border dark:border-brand-dark-border py-8">
         <div class="max-w-6xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-4">
             <p class="text-slate-500 dark:text-slate-400 text-sm">&copy; <span id="year">2025</span> Eren Mente.</p>
             <div class="flex space-x-6">
@@ -412,7 +548,7 @@
 
     <!-- History / Time Travel Button -->
     <button onclick="toggleModal(true)" type="button"
-        class="fixed bottom-8 left-8 bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 p-3 rounded-full shadow-lg hover:scale-110 transition-all duration-300 z-50 border border-slate-200 dark:border-slate-700 group tooltip-container">
+        class="fixed bottom-8 left-8 glassmorphism dark:bg-brand-dark-card text-brand-text dark:text-brand-dark-text p-3 rounded-full shadow-lg hover:scale-110 transition-all duration-300 z-50 border border-brand-border dark:border-brand-dark-border group tooltip-container hover:shadow-brand-primary/50">
         <span
             class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 text-xs text-white bg-slate-800 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">Zaman
             Makinesi</span>
@@ -426,9 +562,10 @@
     <div id="version-modal" class="fixed inset-0 z-[100] hidden" aria-labelledby="modal-title" role="dialog"
         aria-modal="true">
         <!-- Backdrop with Tunnel Effect -->
-        <div class="fixed inset-0 bg-slate-900/90 backdrop-blur-md transition-opacity opacity-0" id="modal-backdrop">
+        <div class="fixed inset-0 bg-brand-dark-bg/95 backdrop-blur-md transition-opacity opacity-0"
+            id="modal-backdrop">
             <div
-                class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-indigo-500/20 via-slate-900/50 to-slate-950 pointer-events-none">
+                class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-brand-primary/30 via-brand-dark-surface/80 to-brand-dark-bg pointer-events-none animate-pulse">
             </div>
         </div>
 
@@ -458,7 +595,7 @@
                         <!-- V3.0 (Future/Current Local) -->
                         <div
                             class="group relative aspect-video rounded-2xl overflow-hidden shadow-2xl ring-2 ring-emerald-500/50 bg-slate-800 transform hover:scale-105 transition-all duration-500 cursor-default">
-                            <img src="img/preview-v2.png" alt="v3.0 Gelecek" loading="lazy" decoding="async"
+                            <img src="img/preview-v3.png" alt="v3.0 Gelecek" loading="lazy" decoding="async"
                                 class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-opacity duration-500 blur-[2px] group-hover:blur-0">
                             <div
                                 class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-900/60 to-transparent">
@@ -529,14 +666,13 @@
 
     <!-- Scroll to Top Button -->
     <button id="scroll-top-btn" aria-label="Yukarı Çık"
-        class="fixed bottom-8 right-8 bg-brand-primary text-white p-3 rounded-full shadow-lg translate-y-20 opacity-0 transition-all duration-300 hover:bg-brand-hover z-50">
+        class="fixed bottom-8 right-8 bg-brand-primary text-white p-3 rounded-full shadow-lg translate-y-20 opacity-0 transition-all duration-300 hover:bg-brand-hover z-50 hover:shadow-brand-primary/50 hover:scale-110">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18" />
         </svg>
     </button>
 
-    <script src="js/particles.js" defer></script>
-    <script src="js/script.js?v=2"></script>
+    <script src="js/script.js?v=3"></script>
 </body>
 
 </html>

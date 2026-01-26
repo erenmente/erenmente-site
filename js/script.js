@@ -23,7 +23,9 @@ const App = {
         this.setupScrollSpy();
         this.setupAnimations();
         this.setupModal();
-        this.setupSpotlight();
+        this.setupSkillsAnimation();
+        this.setupLoadingScreen();
+        this.setupBlog();
 
         // Initial Theme Apply
         this.applyTheme(this.state.theme);
@@ -123,23 +125,32 @@ const App = {
         // Show active icon
         if (icons[mode]) icons[mode].classList.remove('hidden');
 
-        // Apply Class
-        if (mode === 'dark') {
-            document.documentElement.classList.add('dark');
-            localStorage.setItem('color-theme', 'dark');
-        } else if (mode === 'light') {
-            document.documentElement.classList.remove('dark');
-            localStorage.setItem('color-theme', 'light');
+        const html = document.documentElement;
+        const themeButtons = document.querySelectorAll('[data-theme]');
+
+        // Clear all classes
+        html.classList.remove('light', 'dark');
+
+        if (mode === 'system') {
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            html.classList.add(prefersDark ? 'dark' : 'light');
         } else {
-            // System
-            localStorage.setItem('color-theme', 'system');
-            if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-                document.documentElement.classList.add('dark');
-            } else {
-                document.documentElement.classList.remove('dark');
-            }
+            html.classList.add(mode);
         }
+
+        // Store preference
+        localStorage.setItem('color-theme', mode);
+
+        // Update active button state
+        themeButtons.forEach(btn => {
+            if (btn.dataset.theme === mode) {
+                btn.classList.add('bg-brand-primary/10', 'text-brand-primary');
+            } else {
+                btn.classList.remove('bg-brand-primary/10', 'text-brand-primary');
+            }
+        });
     },
+
 
     setupTypingEffect() {
         const textElement = document.getElementById('typing-text');
@@ -275,52 +286,236 @@ const App = {
         };
     },
 
-    setupSpotlight() {
-        const wrapper = document.getElementById('spotlight-wrapper');
-        if (!wrapper) return;
+    setupSkillsAnimation() {
+        const skillItems = document.querySelectorAll('.skill-item');
+        if (!skillItems.length) return;
 
-        // Tech keywords related to the portfolio
-        const techWords = [
-            'Java', 'Python', 'Spring', 'React', 'Docker', 'AWS', 'SQL',
-            'Git', 'Linux', 'DevOps', 'Azure', 'Kubernetes', 'Büyük Veri',
-            'Yapay Zeka', 'Algoritma', 'Backend', 'Frontend', 'Fullstack',
-            'REST API', 'Microservices', 'Clean Code', 'System Design',
-            'Redis', 'PostgreSQL', 'MongoDB', 'Kafka', 'CI/CD', 'Maven'
-        ];
+        const observerOptions = {
+            threshold: 0.2,
+            rootMargin: '0px 0px -50px 0px'
+        };
 
-        // Generate dense grid of words
-        let html = '';
-        const density = 200; // Total words
+        const skillObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.classList.remove('opacity-0');
+                        entry.target.classList.add('opacity-100', 'translate-y-0');
 
-        for (let i = 0; i < density; i++) {
-            const word = techWords[Math.floor(Math.random() * techWords.length)];
-            const top = Math.floor(Math.random() * 100);
-            const left = Math.floor(Math.random() * 100);
-            const fontSize = Math.random() * 0.5 + 0.5; // 0.5rem to 1rem
-            const opacity = Math.random() * 0.5 + 0.1;
+                        // Animate progress bar
+                        const progressBar = entry.target.querySelector('.skill-bar');
+                        const percentage = entry.target.querySelector('.skill-percentage');
+                        const targetProgress = parseInt(progressBar.dataset.progress);
 
-            html += `<span class="spotlight-word" style="top: ${top}%; left: ${left}%; font-size: ${fontSize}rem; opacity: ${opacity}">${word}</span>`;
+                        setTimeout(() => {
+                            progressBar.style.width = targetProgress + '%';
+
+                            // Animate percentage number
+                            let current = 0;
+                            const interval = setInterval(() => {
+                                current++;
+                                percentage.textContent = current + '%';
+                                if (current >= targetProgress) {
+                                    clearInterval(interval);
+                                }
+                            }, 15);
+                        }, 100);
+                    }, index * 100);
+
+                    skillObserver.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        skillItems.forEach(item => {
+            item.classList.add('translate-y-10', 'transition-all', 'duration-700', 'ease-out');
+            skillObserver.observe(item);
+        });
+    },
+
+    setupLoadingScreen() {
+        const loadingScreen = document.getElementById('loading-screen');
+        if (!loadingScreen) return;
+
+        // Hide loading screen after page load
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                loadingScreen.style.opacity = '0';
+                setTimeout(() => {
+                    loadingScreen.style.display = 'none';
+                }, 500);
+            }, 800);
+        });
+    },
+
+    setupBlog() {
+        this.state.blogPosts = [];
+        this.state.blogCategories = [];
+        this.state.currentBlogFilter = 'all';
+
+        // Load blog data
+        fetch('./data/blog-posts.json')
+            .then(response => response.json())
+            .then(data => {
+                this.state.blogPosts = data.posts || [];
+                this.state.blogCategories = data.categories || [];
+
+                this.renderBlogCategories();
+                this.renderBlogPosts();
+            })
+            .catch(error => {
+                console.error('Blog posts could not be loaded:', error);
+                document.getElementById('blog-posts-grid').innerHTML = `
+                    <div class="col-span-full text-center py-12">
+                        <p class="text-slate-500 dark:text-slate-400">Blog yazıları yüklenirken bir hata oluştu.</p>
+                    </div>
+                `;
+            });
+
+        // Expose filter function globally
+        window.filterBlogPosts = (category) => {
+            this.state.currentBlogFilter = category;
+            this.renderBlogPosts();
+
+            // Update active button
+            document.querySelectorAll('.blog-category-btn').forEach(btn => {
+                btn.classList.remove('active', 'bg-brand-primary', 'text-white', 'border-brand-primary');
+                btn.classList.add('glassmorphism', 'dark:bg-slate-800');
+            });
+
+            event.target.classList.add('active', 'bg-brand-primary', 'text-white', 'border-brand-primary');
+            event.target.classList.remove('glassmorphism', 'dark:bg-slate-800');
+        };
+    },
+
+    renderBlogCategories() {
+        const container = document.getElementById('blog-categories');
+        if (!container || !this.state.blogCategories.length) return;
+
+        this.state.blogCategories.forEach(category => {
+            const btn = document.createElement('button');
+            btn.onclick = () => window.filterBlogPosts(category);
+            btn.className = 'blog-category-btn px-4 py-2 text-sm font-medium rounded-lg transition-all glassmorphism dark:bg-slate-800 border border-brand-border dark:border-slate-700 hover:border-brand-primary';
+            btn.textContent = category;
+            container.appendChild(btn);
+        });
+    },
+
+    renderBlogPosts() {
+        const container = document.getElementById('blog-posts-grid');
+        if (!container) return;
+
+        let posts = this.state.blogPosts;
+
+        // Filter posts
+        if (this.state.currentBlogFilter !== 'all') {
+            posts = posts.filter(post => post.category === this.state.currentBlogFilter);
         }
 
-        wrapper.innerHTML = html;
+        // Clear container
+        container.innerHTML = '';
 
-        // Track mouse movement
-        // Track mouse movement with throttle
-        let lastMouse = 0;
-        document.addEventListener('mousemove', (e) => {
-            const now = Date.now();
-            if (now - lastMouse < 20) return; // 50fps max
-            lastMouse = now;
+        if (posts.length === 0) {
+            container.innerHTML = `
+                <div class="col-span-full text-center py-12">
+                    <p class="text-slate-500 dark:text-slate-400">Bu kategoride henüz yazı bulunmuyor.</p>
+                </div>
+            `;
+            return;
+        }
 
-            const x = e.clientX;
-            const y = e.clientY;
-            wrapper.style.setProperty('--mouse-x', `${x}px`);
-            wrapper.style.setProperty('--mouse-y', `${y}px`);
+        // Render posts
+        posts.forEach((post, index) => {
+            const card = this.createBlogCard(post, index);
+            container.appendChild(card);
+        });
+    },
+
+    createBlogCard(post, index) {
+        const card = document.createElement('div');
+        card.className = 'group opacity-0 translate-y-10 transition-all duration-700 ease-out';
+        card.style.transitionDelay = `${index * 100}ms`;
+
+        // Format date
+        const postDate = new Date(post.date);
+        const formattedDate = postDate.toLocaleDateString('tr-TR', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
         });
 
-        // Initialize at center
-        wrapper.style.setProperty('--mouse-x', '50%');
-        wrapper.style.setProperty('--mouse-y', '50%');
+        // Create placeholder with your preferred colors: mavi, sarı, kırmızı, siyah, gri, beyaz
+        const gradients = [
+            'from-slate-100 to-slate-200 dark:from-slate-800 dark:to-slate-900',        // Gri/Siyah/Beyaz
+            'from-blue-50 to-blue-100 dark:from-blue-900/30 dark:to-blue-800/30',      // Mavi
+            'from-sky-50 to-sky-100 dark:from-sky-900/30 dark:to-sky-800/30',          // Açık Mavi
+            'from-amber-50 to-yellow-50 dark:from-amber-900/30 dark:to-yellow-900/30', // Sarı
+            'from-red-50 to-red-100 dark:from-red-900/30 dark:to-red-800/30',          // Kırmızı
+            'from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-900'             // Gri
+        ];
+        const gradient = gradients[index % gradients.length];
+
+        card.innerHTML = `
+            <article class="h-full glassmorphism dark:bg-slate-800 rounded-xl overflow-hidden border border-brand-border dark:border-slate-700 hover:border-brand-primary hover:shadow-xl hover:shadow-brand-primary/10 transition-all duration-300 hover:-translate-y-2">
+                <div class="relative h-48 bg-gradient-to-br ${gradient} overflow-hidden">
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <div class="text-center text-slate-400 dark:text-slate-500">
+                            <svg class="w-16 h-16 mx-auto opacity-40" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                            </svg>
+                        </div>
+                    </div>
+                    ${post.featured ? '<span class="absolute top-4 right-4 px-3 py-1 bg-brand-primary text-white text-xs font-bold rounded-full shadow-lg">⭐ Öne Çıkan</span>' : ''}
+                </div>
+                
+                <div class="p-6">
+                    <div class="flex items-center gap-3 mb-3 text-sm text-slate-500 dark:text-slate-400">
+                        <span class="flex items-center gap-1">
+                            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                            </svg>
+                            ${formattedDate}
+                        </span>
+                        <span class="flex items-center gap-1">
+                            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                            ${post.readTime} dk
+                        </span>
+                    </div>
+                    
+                    <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2 group-hover:text-brand-primary transition-colors line-clamp-2">
+                        ${post.title}
+                    </h3>
+                    
+                    <p class="text-slate-600 dark:text-slate-400 mb-4 line-clamp-3 text-sm leading-relaxed">
+                        ${post.excerpt}
+                    </p>
+                    
+                    <div class="flex items-center justify-between">
+                        <span class="inline-block px-3 py-1 text-xs font-semibold bg-brand-primary/10 text-brand-primary rounded-full">
+                            ${post.category}
+                        </span>
+                        
+                        <button onclick="alert('Blog detay sayfası yakında eklenecek!')" 
+                            class="text-brand-primary hover:text-brand-hover font-medium text-sm flex items-center gap-1 group-hover:gap-2 transition-all">
+                            Devamını Oku
+                            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </article>
+        `;
+
+        // Trigger animation
+        setTimeout(() => {
+            card.classList.remove('opacity-0', 'translate-y-10');
+            card.classList.add('opacity-100', 'translate-y-0');
+        }, 50);
+
+        return card;
     }
 };
 

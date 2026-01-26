@@ -1,4 +1,12 @@
 {
+  "name": "erenmente-com",
+  "version": "3.0.0",
+  "description": "Personal portfolio website for Muhammet Eren Mente",
+  "scripts": {
+    "build:css": "tailwindcss -i ./src/input.css -o ./css/style.css --minify",
+    "watch:css": "tailwindcss -i ./src/input.css -o ./css/style.css --watch",
+    "dev": "npm run watch:css"
+  },
   "devDependencies": {
     "tailwindcss": "^3.4.17"
   }
