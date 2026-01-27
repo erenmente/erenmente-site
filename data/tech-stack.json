@@ -1,0 +1,94 @@
+{
+    "technologies": [
+        {
+            "name": "Java",
+            "icon": "☕",
+            "color": "from-red-500 to-red-600",
+            "category": "Languages"
+        },
+        {
+            "name": "Python",
+            "icon": "🐍",
+            "color": "from-blue-500 to-yellow-400",
+            "category": "Languages"
+        },
+        {
+            "name": "JavaScript",
+            "icon": "⚡",
+            "color": "from-yellow-400 to-yellow-500",
+            "category": "Languages"
+        },
+        {
+            "name": "HTML5",
+            "icon": "🌐",
+            "color": "from-red-500 to-red-600",
+            "category": "Web"
+        },
+        {
+            "name": "CSS3",
+            "icon": "🎨",
+            "color": "from-blue-500 to-blue-600",
+            "category": "Web"
+        },
+        {
+            "name": "Tailwind CSS",
+            "icon": "🎯",
+            "color": "from-sky-400 to-sky-500",
+            "category": "Web"
+        },
+        {
+            "name": "Git",
+            "icon": "🔀",
+            "color": "from-red-500 to-red-600",
+            "category": "Tools"
+        },
+        {
+            "name": "GitHub",
+            "icon": "🐙",
+            "color": "from-gray-700 to-gray-900",
+            "category": "Tools"
+        },
+        {
+            "name": "Flask",
+            "icon": "🔥",
+            "color": "from-slate-700 to-slate-800",
+            "category": "Frameworks"
+        },
+        {
+            "name": "Spring Boot",
+            "icon": "🍃",
+            "color": "from-blue-600 to-blue-700",
+            "category": "Frameworks"
+        },
+        {
+            "name": "PostgreSQL",
+            "icon": "🐘",
+            "color": "from-blue-600 to-blue-700",
+            "category": "Database"
+        },
+        {
+            "name": "MySQL",
+            "icon": "🐬",
+            "color": "from-blue-500 to-blue-600",
+            "category": "Database"
+        },
+        {
+            "name": "VS Code",
+            "icon": "💻",
+            "color": "from-blue-500 to-blue-600",
+            "category": "Tools"
+        },
+        {
+            "name": "IntelliJ IDEA",
+            "icon": "🧠",
+            "color": "from-red-500 to-red-600",
+            "category": "Tools"
+        },
+        {
+            "name": "Bootstrap",
+            "icon": "📱",
+            "color": "from-blue-500 to-sky-500",
+            "category": "Web"
+        }
+    ]
+}
