@@ -23,9 +23,9 @@ const App = {
         this.setupScrollSpy();
         this.setupAnimations();
         this.setupModal();
-        this.setupSkillsAnimation();
+
         this.setupLoadingScreen();
-        this.setupTechStack();
+
         this.setupBlog();
 
         // Initial Theme Apply
@@ -251,14 +251,9 @@ const App = {
             });
         }, observerOptions);
 
-        const elements = document.querySelectorAll('#skills .group, #experience .group, #projects .group');
+        const elements = document.querySelectorAll('#projects .group');
         elements.forEach((el, index) => {
             el.classList.add('opacity-0', 'translate-y-10', 'transition-all', 'duration-700', 'ease-out');
-
-            if (el.closest('#skills')) {
-                el.style.transitionDelay = `${(index % 4) * 100}ms`;
-            }
-
             observer.observe(el);
         });
     },
@@ -287,52 +282,7 @@ const App = {
         };
     },
 
-    setupSkillsAnimation() {
-        const skillItems = document.querySelectorAll('.skill-item');
-        if (!skillItems.length) return;
 
-        const observerOptions = {
-            threshold: 0.2,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const skillObserver = new IntersectionObserver((entries) => {
-            entries.forEach((entry, index) => {
-                if (entry.isIntersecting) {
-                    setTimeout(() => {
-                        entry.target.classList.remove('opacity-0');
-                        entry.target.classList.add('opacity-100', 'translate-y-0');
-
-                        // Animate progress bar
-                        const progressBar = entry.target.querySelector('.skill-bar');
-                        const percentage = entry.target.querySelector('.skill-percentage');
-                        const targetProgress = parseInt(progressBar.dataset.progress);
-
-                        setTimeout(() => {
-                            progressBar.style.width = targetProgress + '%';
-
-                            // Animate percentage number
-                            let current = 0;
-                            const interval = setInterval(() => {
-                                current++;
-                                percentage.textContent = current + '%';
-                                if (current >= targetProgress) {
-                                    clearInterval(interval);
-                                }
-                            }, 15);
-                        }, 100);
-                    }, index * 100);
-
-                    skillObserver.unobserve(entry.target);
-                }
-            });
-        }, observerOptions);
-
-        skillItems.forEach(item => {
-            item.classList.add('translate-y-10', 'transition-all', 'duration-700', 'ease-out');
-            skillObserver.observe(item);
-        });
-    },
 
     setupLoadingScreen() {
         const loadingScreen = document.getElementById('loading-screen');
@@ -349,64 +299,7 @@ const App = {
         });
     },
 
-    setupTechStack() {
-        // Load tech stack data
-        fetch('./data/tech-stack.json')
-            .then(response => response.json())
-            .then(data => {
-                this.renderTechStack(data.technologies || []);
-            })
-            .catch(error => {
-                console.error('Tech stack could not be loaded:', error);
-                document.getElementById('tech-stack-grid').innerHTML = `
-                    <div class="col-span-full text-center py-12">
-                        <p class="text-slate-500 dark:text-slate-400">Teknolojiler yüklenirken bir hata oluştu.</p>
-                    </div>
-                `;
-            });
-    },
 
-    renderTechStack(technologies) {
-        const container = document.getElementById('tech-stack-grid');
-        if (!container) return;
-
-        container.innerHTML = '';
-
-        technologies.forEach((tech, index) => {
-            const card = document.createElement('div');
-            card.className = 'tech-card group opacity-0 translate-y-10 transition-all duration-700 ease-out';
-            card.style.transitionDelay = `${index * 50}ms`;
-
-            card.innerHTML = `
-                <div class="relative h-32 glassmorphism dark:bg-slate-800 rounded-xl border border-brand-border dark:border-slate-700 hover:border-brand-primary transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-brand-primary/20 overflow-hidden cursor-default">
-                    <!-- Icon Badge -->
-                    <div class="absolute top-3 left-3 text-3xl filter drop-shadow-lg">
-                        ${tech.icon}
-                    </div>
-                    
-                    <!-- Content -->
-                    <div class="absolute bottom-0 left-0 right-0 p-3 bg-gradient-to-t from-white/90 to-transparent dark:from-slate-900/90">
-                        <h3 class="font-semibold text-sm text-slate-900 dark:text-white mb-1 truncate">
-                            ${tech.name}
-                        </h3>
-                        <span class="inline-block px-2 py-0.5 text-xs bg-brand-primary/10 text-brand-primary rounded-full">
-                            ${tech.category}
-                        </span>
-                    </div>
-
-                    <!-- Hover Effect Background -->
-                    <div class="absolute inset-0 bg-gradient-to-br ${tech.color} opacity-0 group-hover:opacity-10 dark:group-hover:opacity-5 transition-opacity duration-300"></div>
-                </div>
-            `;
-
-            setTimeout(() => {
-                card.classList.remove('opacity-0', 'translate-y-10');
-                card.classList.add('opacity-100', 'translate-y-0');
-            }, 50);
-
-            container.appendChild(card);
-        });
-    },
 
     setupBlog() {
         this.state.blogPosts = [];
@@ -536,12 +429,6 @@ const App = {
                             </svg>
                             ${formattedDate}
                         </span>
-                        <span class="flex items-center gap-1">
-                            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                            </svg>
-                            ${post.readTime} dk
-                        </span>
                     </div>
                     
                     <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2 group-hover:text-brand-primary transition-colors line-clamp-2">
@@ -557,13 +444,13 @@ const App = {
                             ${post.category}
                         </span>
                         
-                        <button onclick="alert('Blog detay sayfası yakında eklenecek!')" 
+                        <a href="blog/post.html?slug=${post.slug}" 
                             class="text-brand-primary hover:text-brand-hover font-medium text-sm flex items-center gap-1 group-hover:gap-2 transition-all">
                             Devamını Oku
                             <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
                             </svg>
-                        </button>
+                        </a>
                     </div>
                 </div>
             </article>

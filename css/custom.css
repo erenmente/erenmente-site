@@ -1,0 +1,179 @@
+/* Modern Font & Color Overrides */
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
+
+:root {
+    --font-heading: 'Outfit', sans-serif;
+    --font-body: 'Plus Jakarta Sans', sans-serif;
+}
+
+body {
+    font-family: var(--font-body) !important;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.font-heading {
+    font-family: var(--font-heading) !important;
+    letter-spacing: -0.01em;
+}
+
+/* --- COLOR THEME OVERRIDES (Deep Ocean) --- */
+
+/* Primary Color: Electric Blue (#3b82f6) instead of Purple */
+.bg-brand-primary {
+    background-color: #3b82f6 !important;
+}
+
+.text-brand-primary {
+    color: #3b82f6 !important;
+}
+
+.border-brand-primary {
+    border-color: #3b82f6 !important;
+}
+
+.hover\:bg-brand-primary:hover {
+    background-color: #3b82f6 !important;
+}
+
+.hover\:text-brand-primary:hover {
+    color: #3b82f6 !important;
+}
+
+.hover\:border-brand-primary:hover {
+    border-color: #3b82f6 !important;
+}
+
+/* Hover States (Darker Blue) */
+.hover\:bg-brand-hover:hover {
+    background-color: #2563eb !important;
+}
+
+/* Accent Color: Cyan (#06b6d4) instead of Pink */
+.text-brand-accent {
+    color: #06b6d4 !important;
+}
+
+.bg-brand-accent {
+    background-color: #06b6d4 !important;
+}
+
+.from-brand-primary {
+    --tw-gradient-from: #3b82f6 !important;
+    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to) !important;
+}
+
+.to-brand-accent {
+    --tw-gradient-to: #06b6d4 !important;
+}
+
+.via-brand-accent {
+    --tw-gradient-stops: var(--tw-gradient-from), #06b6d4, var(--tw-gradient-to) !important;
+}
+
+/* Background Hints (Primary with low opacity) */
+.bg-brand-primary\/10 {
+    background-color: rgba(59, 130, 246, 0.1) !important;
+}
+
+.bg-brand-primary\/20 {
+    background-color: rgba(59, 130, 246, 0.2) !important;
+}
+
+.text-brand-primary\/10 {
+    color: rgba(59, 130, 246, 0.1) !important;
+}
+
+/* Deep Dark Backgrounds */
+.dark .dark\:bg-brand-dark-bg {
+    background-color: #020617 !important;
+    /* Richer dark blue-black */
+}
+
+.dark .dark\:bg-brand-dark-surface {
+    background-color: #0f172a !important;
+    /* Slate 900 */
+}
+
+.dark .dark\:bg-brand-dark-surface\/60 {
+    background-color: rgba(15, 23, 42, 0.8) !important;
+}
+
+/* Glassmorphism Tint Adjustment (Blueish tint instead of purple) */
+.glassmorphism {
+    background: rgba(59, 130, 246, 0.05) !important;
+    border: 1px solid rgba(59, 130, 246, 0.1) !important;
+}
+
+.dark .glassmorphism {
+    background: rgba(15, 23, 42, 0.6) !important;
+    border: 1px solid rgba(59, 130, 246, 0.2) !important;
+}
+
+/* Selection Color */
+::selection {
+    background-color: #3b82f6 !important;
+    color: white !important;
+}
+
+/* --- FONT STYLES --- */
+
+/* Override existing handwriting classes to force modern font */
+.font-hand {
+    font-family: var(--font-body) !important;
+    font-weight: 400 !important;
+}
+
+/* Code blocks */
+code,
+pre,
+.font-mono {
+    font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace !important;
+}
+
+/* --- CYBER GRID BACKGROUND --- */
+.cyber-grid {
+    background-size: 40px 40px;
+    background-image:
+        linear-gradient(to right, rgba(59, 130, 246, 0.05) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(59, 130, 246, 0.05) 1px, transparent 1px);
+    mask-image: radial-gradient(circle at center, black 40%, transparent 80%);
+    -webkit-mask-image: radial-gradient(circle at center, black 40%, transparent 80%);
+    transform: perspective(500px) rotateX(60deg) scale(2);
+    transform-origin: center top;
+    opacity: 0.5;
+    animation: grid-move 20s linear infinite;
+    position: absolute;
+    top: 0;
+    left: -50%;
+    width: 200%;
+    height: 100%;
+    z-index: -20;
+    pointer-events: none;
+}
+
+@keyframes grid-move {
+    0% {
+        transform: perspective(500px) rotateX(60deg) scale(2) translateY(0);
+    }
+
+    100% {
+        transform: perspective(500px) rotateX(60deg) scale(2) translateY(40px);
+    }
+}
+
+.cyber-spotlight {
+    position: absolute;
+    top: -50%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at center, rgba(59, 130, 246, 0.15) 0%, transparent 70%);
+    z-index: -15;
+    pointer-events: none;
+}
