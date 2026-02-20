@@ -1,6 +1,6 @@
 /**
  * Eren Mente Portfolio - Main Script
- * Refactored for modularity and performance
+ * Homepage functionality only
  */
 
 const App = {
@@ -19,16 +19,7 @@ const App = {
         this.setupMobileMenu();
         this.setupTheme();
         this.setupTypingEffect();
-        this.setupScrollTop();
-        this.setupScrollSpy();
-        this.setupAnimations();
-        this.setupModal();
-
         this.setupLoadingScreen();
-
-        this.setupBlog();
-
-        // Initial Theme Apply
         this.applyTheme(this.state.theme);
     },
 
@@ -44,7 +35,7 @@ const App = {
         let lastScroll = 0;
         window.addEventListener('scroll', () => {
             const now = Date.now();
-            if (now - lastScroll < 50) return; // Throttle 50ms
+            if (now - lastScroll < 50) return;
             lastScroll = now;
 
             if (window.scrollY > 10) {
@@ -65,15 +56,14 @@ const App = {
 
         btn.addEventListener('click', () => {
             this.state.isMenuOpen = !this.state.isMenuOpen;
-            menu.classList.toggle('active');
+            menu.classList.toggle('hidden');
             btn.setAttribute('aria-expanded', this.state.isMenuOpen);
         });
 
-        // Close when link clicked
         menu.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', () => {
                 this.state.isMenuOpen = false;
-                menu.classList.remove('active');
+                menu.classList.add('hidden');
                 btn.setAttribute('aria-expanded', 'false');
             });
         });
@@ -85,27 +75,23 @@ const App = {
 
         if (!toggleBtn || !dropdown) return;
 
-        // Toggle Dropdown
         toggleBtn.addEventListener('click', (e) => {
             e.stopPropagation();
             dropdown.classList.toggle('hidden');
         });
 
-        // Close on outside click
         document.addEventListener('click', (e) => {
             if (!toggleBtn.contains(e.target) && !dropdown.contains(e.target)) {
                 dropdown.classList.add('hidden');
             }
         });
 
-        // System Preference Listener
         window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
             if (this.state.theme === 'system') {
                 this.applyTheme('system');
             }
         });
 
-        // Expose selection globally for HTML onclicks
         window.selectTheme = (mode) => {
             this.state.theme = mode;
             this.applyTheme(mode);
@@ -120,16 +106,10 @@ const App = {
             system: document.getElementById('icon-display-system')
         };
 
-        // Hide all icons
         Object.values(icons).forEach(icon => icon && icon.classList.add('hidden'));
-
-        // Show active icon
         if (icons[mode]) icons[mode].classList.remove('hidden');
 
         const html = document.documentElement;
-        const themeButtons = document.querySelectorAll('[data-theme]');
-
-        // Clear all classes
         html.classList.remove('light', 'dark');
 
         if (mode === 'system') {
@@ -139,19 +119,8 @@ const App = {
             html.classList.add(mode);
         }
 
-        // Store preference
         localStorage.setItem('color-theme', mode);
-
-        // Update active button state
-        themeButtons.forEach(btn => {
-            if (btn.dataset.theme === mode) {
-                btn.classList.add('bg-brand-primary/10', 'text-brand-primary');
-            } else {
-                btn.classList.remove('bg-brand-primary/10', 'text-brand-primary');
-            }
-        });
     },
-
 
     setupTypingEffect() {
         const textElement = document.getElementById('typing-text');
@@ -186,109 +155,10 @@ const App = {
         type();
     },
 
-    setupScrollTop() {
-        const btn = document.getElementById('scroll-top-btn');
-        if (!btn) return;
-
-        let lastScrollTop = 0;
-        window.addEventListener('scroll', () => {
-            const now = Date.now();
-            if (now - lastScrollTop < 100) return;
-            lastScrollTop = now;
-
-            if (window.scrollY > 300) {
-                btn.classList.remove('translate-y-20', 'opacity-0');
-            } else {
-                btn.classList.add('translate-y-20', 'opacity-0');
-            }
-        });
-
-        btn.addEventListener('click', () => {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
-    },
-
-    setupScrollSpy() {
-        const sections = document.querySelectorAll('header[id], section[id]');
-        const navLinks = document.querySelectorAll('.space-x-8 a, #mobile-menu a');
-
-        let lastScrollSpy = 0;
-        window.addEventListener('scroll', () => {
-            const now = Date.now();
-            if (now - lastScrollSpy < 100) return;
-            lastScrollSpy = now;
-
-            let current = '';
-
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                if (scrollY >= (sectionTop - 150)) {
-                    current = section.getAttribute('id');
-                }
-            });
-
-            navLinks.forEach(link => {
-                link.classList.remove('text-brand-primary', 'font-bold');
-                link.classList.add('text-brand-text', 'dark:text-slate-300');
-
-                if (link.getAttribute('href').includes(current) && current !== '') {
-                    link.classList.add('text-brand-primary', 'font-bold');
-                    link.classList.remove('text-brand-text', 'dark:text-slate-300');
-                }
-            });
-        });
-    },
-
-    setupAnimations() {
-        const observerOptions = { threshold: 0.1, rootMargin: "0px 0px -50px 0px" };
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach((entry) => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('opacity-100', 'translate-y-0');
-                    entry.target.classList.remove('opacity-0', 'translate-y-10');
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, observerOptions);
-
-        const elements = document.querySelectorAll('#projects .group');
-        elements.forEach((el, index) => {
-            el.classList.add('opacity-0', 'translate-y-10', 'transition-all', 'duration-700', 'ease-out');
-            observer.observe(el);
-        });
-    },
-
-    setupModal() {
-        const modal = document.getElementById('version-modal');
-        const backdrop = document.getElementById('modal-backdrop');
-        const panel = document.getElementById('modal-panel');
-
-        if (!modal) return;
-
-        window.toggleModal = (show) => {
-            if (show) {
-                modal.classList.remove('hidden');
-                setTimeout(() => {
-                    backdrop.classList.remove('opacity-0');
-                    panel.classList.remove('opacity-0', 'translate-y-4');
-                }, 10);
-            } else {
-                backdrop.classList.add('opacity-0');
-                panel.classList.add('opacity-0', 'translate-y-4');
-                setTimeout(() => {
-                    modal.classList.add('hidden');
-                }, 300);
-            }
-        };
-    },
-
-
-
     setupLoadingScreen() {
         const loadingScreen = document.getElementById('loading-screen');
         if (!loadingScreen) return;
 
-        // Hide loading screen after page load
         window.addEventListener('load', () => {
             setTimeout(() => {
                 loadingScreen.style.opacity = '0';
@@ -297,174 +167,7 @@ const App = {
                 }, 500);
             }, 800);
         });
-    },
-
-
-
-    setupBlog() {
-        this.state.blogPosts = [];
-        this.state.blogCategories = [];
-        this.state.currentBlogFilter = 'all';
-
-        // Load blog data
-        fetch('./data/blog-posts.json')
-            .then(response => response.json())
-            .then(data => {
-                this.state.blogPosts = data.posts || [];
-                this.state.blogCategories = data.categories || [];
-
-                this.renderBlogCategories();
-                this.renderBlogPosts();
-            })
-            .catch(error => {
-                console.error('Blog posts could not be loaded:', error);
-                document.getElementById('blog-posts-grid').innerHTML = `
-                    <div class="col-span-full text-center py-12">
-                        <p class="text-slate-500 dark:text-slate-400">Blog yazıları yüklenirken bir hata oluştu.</p>
-                    </div>
-                `;
-            });
-
-        // Expose filter function globally
-        window.filterBlogPosts = (category) => {
-            this.state.currentBlogFilter = category;
-            this.renderBlogPosts();
-
-            // Update active button
-            document.querySelectorAll('.blog-category-btn').forEach(btn => {
-                btn.classList.remove('active', 'bg-brand-primary', 'text-white', 'border-brand-primary');
-                btn.classList.add('glassmorphism', 'dark:bg-slate-800');
-            });
-
-            event.target.classList.add('active', 'bg-brand-primary', 'text-white', 'border-brand-primary');
-            event.target.classList.remove('glassmorphism', 'dark:bg-slate-800');
-        };
-    },
-
-    renderBlogCategories() {
-        const container = document.getElementById('blog-categories');
-        if (!container || !this.state.blogCategories.length) return;
-
-        this.state.blogCategories.forEach(category => {
-            const btn = document.createElement('button');
-            btn.onclick = () => window.filterBlogPosts(category);
-            btn.className = 'blog-category-btn px-4 py-2 text-sm font-medium rounded-lg transition-all glassmorphism dark:bg-slate-800 border border-brand-border dark:border-slate-700 hover:border-brand-primary';
-            btn.textContent = category;
-            container.appendChild(btn);
-        });
-    },
-
-    renderBlogPosts() {
-        const container = document.getElementById('blog-posts-grid');
-        if (!container) return;
-
-        let posts = this.state.blogPosts;
-
-        // Filter posts
-        if (this.state.currentBlogFilter !== 'all') {
-            posts = posts.filter(post => post.category === this.state.currentBlogFilter);
-        }
-
-        // Clear container
-        container.innerHTML = '';
-
-        if (posts.length === 0) {
-            container.innerHTML = `
-                <div class="col-span-full text-center py-12">
-                    <p class="text-slate-500 dark:text-slate-400">Bu kategoride henüz yazı bulunmuyor.</p>
-                </div>
-            `;
-            return;
-        }
-
-        // Render posts
-        posts.forEach((post, index) => {
-            const card = this.createBlogCard(post, index);
-            container.appendChild(card);
-        });
-    },
-
-    createBlogCard(post, index) {
-        const card = document.createElement('div');
-        card.className = 'group opacity-0 translate-y-10 transition-all duration-700 ease-out';
-        card.style.transitionDelay = `${index * 100}ms`;
-
-        // Format date
-        const postDate = new Date(post.date);
-        const formattedDate = postDate.toLocaleDateString('tr-TR', {
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric'
-        });
-
-        // Create placeholder with your preferred colors: mavi, sarı, kırmızı, siyah, gri, beyaz
-        const gradients = [
-            'from-slate-100 to-slate-200 dark:from-slate-800 dark:to-slate-900',        // Gri/Siyah/Beyaz
-            'from-blue-50 to-blue-100 dark:from-blue-900/30 dark:to-blue-800/30',      // Mavi
-            'from-sky-50 to-sky-100 dark:from-sky-900/30 dark:to-sky-800/30',          // Açık Mavi
-            'from-amber-50 to-yellow-50 dark:from-amber-900/30 dark:to-yellow-900/30', // Sarı
-            'from-red-50 to-red-100 dark:from-red-900/30 dark:to-red-800/30',          // Kırmızı
-            'from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-900'             // Gri
-        ];
-        const gradient = gradients[index % gradients.length];
-
-        card.innerHTML = `
-            <article class="h-full glassmorphism dark:bg-slate-800 rounded-xl overflow-hidden border border-brand-border dark:border-slate-700 hover:border-brand-primary hover:shadow-xl hover:shadow-brand-primary/10 transition-all duration-300 hover:-translate-y-2">
-                <div class="relative h-48 bg-gradient-to-br ${gradient} overflow-hidden">
-                    <div class="absolute inset-0 flex items-center justify-center">
-                        <div class="text-center text-slate-400 dark:text-slate-500">
-                            <svg class="w-16 h-16 mx-auto opacity-40" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                            </svg>
-                        </div>
-                    </div>
-                    ${post.featured ? '<span class="absolute top-4 right-4 px-3 py-1 bg-brand-primary text-white text-xs font-bold rounded-full shadow-lg">⭐ Öne Çıkan</span>' : ''}
-                </div>
-                
-                <div class="p-6">
-                    <div class="flex items-center gap-3 mb-3 text-sm text-slate-500 dark:text-slate-400">
-                        <span class="flex items-center gap-1">
-                            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                            </svg>
-                            ${formattedDate}
-                        </span>
-                    </div>
-                    
-                    <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2 group-hover:text-brand-primary transition-colors line-clamp-2">
-                        ${post.title}
-                    </h3>
-                    
-                    <p class="text-slate-600 dark:text-slate-400 mb-4 line-clamp-3 text-sm leading-relaxed">
-                        ${post.excerpt}
-                    </p>
-                    
-                    <div class="flex items-center justify-between">
-                        <span class="inline-block px-3 py-1 text-xs font-semibold bg-brand-primary/10 text-brand-primary rounded-full">
-                            ${post.category}
-                        </span>
-                        
-                        <a href="blog/post.html?slug=${post.slug}" 
-                            class="text-brand-primary hover:text-brand-hover font-medium text-sm flex items-center gap-1 group-hover:gap-2 transition-all">
-                            Devamını Oku
-                            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                            </svg>
-                        </a>
-                    </div>
-                </div>
-            </article>
-        `;
-
-        // Trigger animation
-        setTimeout(() => {
-            card.classList.remove('opacity-0', 'translate-y-10');
-            card.classList.add('opacity-100', 'translate-y-0');
-        }, 50);
-
-        return card;
     }
 };
 
-// Initialize App
 document.addEventListener('DOMContentLoaded', () => App.init());
