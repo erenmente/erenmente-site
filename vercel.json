@@ -1,6 +1,10 @@
 {
     "rewrites": [
         {
+            "source": "/api/admin/:path*",
+            "destination": "/api/admin.py"
+        },
+        {
             "source": "/firatasistan",
             "destination": "/api/index.py"
         },
