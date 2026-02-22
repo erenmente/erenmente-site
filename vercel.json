@@ -1,6 +1,14 @@
 {
     "rewrites": [
         {
+            "source": "/finans",
+            "destination": "https://finans-asistani.onrender.com"
+        },
+        {
+            "source": "/finans/:path*",
+            "destination": "https://finans-asistani.onrender.com/:path*"
+        },
+        {
             "source": "/api/admin/:path*",
             "destination": "/api/admin.py"
         },
