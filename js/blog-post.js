@@ -91,14 +91,8 @@ const BlogPost = {
             return;
         }
         try {
-            // Fetch blog posts - try multiple paths for compatibility
-            let response;
-            try {
-                response = await fetch('/data/blog-posts.json');
-                if (!response.ok) throw new Error('Not found');
-            } catch (e) {
-                response = await fetch('../data/blog-posts.json');
-            }
+            // Fetch blog posts
+            const response = await fetch('/data/blog-posts.json');
             const data = await response.json();
             this.state.posts = data.posts || [];
 
